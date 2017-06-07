@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //简易封装ajax 不支持兼容
+    function ajax(url,fnSucc,fnFail){
+        var oAjax=new XMLHttpRequest();
+        oAjax.open('GET',url,true);
+        oAjax.send();
+        oAjax.onload=function(){
+            if(oAjax.readyState==4 && oAjax.status==200){
+                fnSucc(oAjax.responseText)
+            }else{
+                fnFail(oAjax.status);
+            }
+        };
+    }
+
+
+    window.onload=function(){
+        let oBtn=document.getElementById('btn1');
+        let oBox=document.getElementById('box1');
+
+        oBtn.onclick=function(){
+            //成功后把数据传递出去
+            let p1=new Promise(function(resolve,reject){ //把数据返回给then
+                ajax('a.txt',function(str){
+                    resolve(str); //必须写这行 否则返回不出去
+                },function(str){
+                    reject(str); //必须写的
+                });
+            });
+
+
+            p1.then(function(str){
+                oBox.innerHTML=str;
+            },function(str){
+                oBox.innerHTML=str;
+            });
+        };
+    };
+</script>
+<input type="button" value="aaa" id="btn1">
+<div id="box1"></div>
+</body>
+</html>
