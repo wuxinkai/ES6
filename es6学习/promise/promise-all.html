@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+
+  </style>
+  <script>
+    //all 将多个promise对象 组成一个全新的Promise实现
+    //只有所有的Promise对象都正确才会走成功
+    //成功的
+    var p1 = Promise.resolve(3);
+    Promise.all([true, p1]).then(function (value) {
+      console.log('成功了,' + value);
+    }, function (value) {
+      console.log('错误了,' + value);
+    });
+
+
+    //把失败信息返回回来，只有所有的Promise对象都正确才会走成功
+    var f1 = Promise.resolve(3);
+    var f2 = Promise.reject(5);
+    Promise.all([true, f1, f2]).then(function (value) {
+      console.log('成功了,' + value);
+    }, function (value) {
+      console.log('错误了,' + value);
+    });
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

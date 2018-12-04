@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script>
+      //race 返回最先执行的结果
+        var p1=new Promise(function(resolve,reject){
+            setTimeout(resolve,50,'one');
+        });
+        var p2=new Promise(function(resolve,reject){
+            setTimeout(resolve,100,'two');
+        });
+
+        Promise.race([p1,p2]).then(function(value){
+            console.log(value);
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

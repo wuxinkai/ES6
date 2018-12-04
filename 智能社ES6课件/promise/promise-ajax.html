@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>在webStorm里面实现</p>
+  <input type="button" value="aaa" id="btn1">
+  <div id="box1"></div>
+</body>
+
+</html>
+<script>
+  function ajax(url, fnSucc, fnFail) {
+    var oAjax = new XMLHttpRequest();
+    oAjax.open('GET', url, true);
+    oAjax.send();
+    oAjax.onload = function () {
+      if (oAjax.readyState == 4 && oAjax.status == 200) {
+        fnSucc(oAjax.responseText)
+      } else {
+        fnFail(oAjax.status);
+      }
+    };
+  }
+
+  window.onload = function () {
+    let oBtn = document.getElementById('btn1');
+    let box1 = document.getElementById('box1');
+    
+    oBtn.onclick = function () {
+      // ajax('a.txt', function (str) {
+      //   console.log(str);
+      // }, function () {
+      //     console.log(str);
+      // })
+        let p1 = new Promise(function (resolve,reject) {
+            ajax('a.txt',function (str) {
+                resolve(str);
+            },function (err) {
+                reject(err)
+            })
+        });
+        p1.then(function (str) {
+            box1.innerText =str
+        },function (err) {
+            box1.innerText =err
+        })
+    }
+  }
+</script>

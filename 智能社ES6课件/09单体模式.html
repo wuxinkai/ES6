@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社——http://www.zhinengshe.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+    </style>
+    <script>
+        /*var person={
+            name:'abc',
+            age:16,
+            showName:function(){
+                alert(this.name);
+            },
+            showAge:function(){
+                alert(this.age);
+            }
+        };
+        person.showName();*/
+        // var person={
+        //     name:'abc',
+        //     age:16,
+        //     showName:()=>{
+        //         alert(this.name);
+        //     },
+        //     showAge:()=>{
+        //         alert(this.age);
+        //     }
+        // };
+        // person.showName();
+//es5
+        var person = {
+          name:'abc',
+          age:16,
+          showName:function(){
+            return this.name
+          },
+          showAge:function(){
+            return this.age
+          }
+        }
+        console.log(person.showName())
+        console.log(person.showAge())
+      
+//es6 
+        var person2 ={
+          age:22,
+          name:"邓超",
+          showNme(){
+            return this.name
+          },
+          showAge(){
+            return this.age
+          }
+        }
+        console.log(person2.showNme())
+        console.log(person2.showAge())
+
+//es6 其它方式
+        let zName = '孙俪';
+        let zAge = 101;
+        let person3 ={
+          zName,
+          zAge,
+          showName(){
+            return this.zName
+          },
+          showAge(){
+            return this.zAge
+          }
+        }
+        console.log(person3.showName())
+        console.log(person3.showAge())
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

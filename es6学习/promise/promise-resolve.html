@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+
+  </style>
+  <script>
+    //reject生成一个成功的Promise对象
+    let a1 = 'Success'
+    let a2 = [1, 2, 3]
+    let a3 = {
+      Success: [1, 2, 3]
+    }
+    Promise.resolve(a3).then(function (value) {
+      console.log(value);
+    }, function (res) {
+      console.log(res);
+    });
+
+    //Promise 返回Promise结果
+    var p1 = Promise.resolve(3);
+    var p2 = Promise.resolve(p1);
+    p2.then(function (value) {
+      console.log(value);
+    });
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

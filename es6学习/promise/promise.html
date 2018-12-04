@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  //异步 多个操作可以同时进行
+  // pending 等待
+  // resolve 完成
+  // rejected 拒绝
+  var p1 = new Promise(function (resolve, reject) {
+    resolve(1); //请求成功
+    // reject(2) //失败
+  });
+
+  p1.then(function (value) { //then 
+    console.log('成功了:' + value);
+    return value + 1
+  }, function () {
+    var d = '999'
+    console.log('失败了');
+    return d
+  }).then(function (value) {
+    console.log('第二次成功结果:' + value);
+  }, function () {
+    console.log('第二次失败了' + d);
+  });
+
+  
+</script>

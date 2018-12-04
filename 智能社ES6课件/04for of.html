@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+
+  </style>
+  <script>
+    var arr = ['apple', 'banana', 'orange', 'pear'];
+
+
+    //for…in主要是为遍历对象而设计的，不适用于遍历数组。 
+    for (var i in arr) { // 0 1 2 3  索引
+      console.log(`for in`,i);
+    }
+
+
+    //它可以与break、continue和return配合使用 可终止循环
+    for (var i of arr) { 
+      if(i=='orange'){
+        // break //结束当前循环
+        // continue //结束本次循环
+        // return i  //报错
+      }
+      console.log(`forof`,i);
+    }
+
+    //for循环
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`for`,arr[i]);
+    }
+
+    
+    //forEach 不能跳过或者终止循环
+    arr.forEach(function (value) {
+      console.log(`forEach`,value);
+    })
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

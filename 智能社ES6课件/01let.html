@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+
+  </style>
+  <script>
+    //（1）let 呗花括号{}包起来的都是 私有变量  
+    {
+      let a = 12;
+      console.log('let' + a);
+    }
+    // console.log('let'+a);  //获取不到直接报错
+
+    {
+      var b = 12;
+      console.log('var' + b);
+    }
+    console.log('var' + b);
+
+
+    //（2）变量不能重复声明
+    let c = 12;
+    let c = 5;
+    console.log(c); //直接报错 Identifier 'a' has already been declared
+
+    //（3）变量内容可以被覆盖
+    let d = '大组件';
+    d = 12;
+    alert(d); //下面覆盖上面的
+
+    // 不存在变量提升
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

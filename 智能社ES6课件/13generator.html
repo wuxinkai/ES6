@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script>
+
+        //第一个
+        function* show() {
+            yield  "第一个";
+            yield  "第二个";
+            return "xxxxxx"
+        }
+        var res =show();
+        console.log(res.next()); //done:false 是没有结束的意思
+        console.log(res.next());
+        console.log(res.next());
+
+        //循环
+        function* show2() {
+           var a = yield "2222";
+            return a
+        }
+        var res2 =show2();
+        console.log(res2.next());
+
+        //对象
+        var json={
+            *show3(){
+                yield 'a';
+                yield 'b';
+                return 'c';
+            }
+        };
+        var res3=json.show3();
+
+        console.log(res3.next());
+        console.log(res3.next());
+        console.log(res3.next());
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

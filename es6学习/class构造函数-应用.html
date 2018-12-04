@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .on{ background: #f60; color: #fff}
+      .box div{
+          width:200px;
+          height:200px;
+          border: 1px solid #000;
+          display: none;
+      }
+  </style>
+</head>
+<script>
+    class Tab {
+      constructor(id) {
+        this.oBox = document.getElementById(id);
+        this.aBtn = this.oBox.querySelectorAll('.inputs');
+        this.aDiv = this.oBox.querySelectorAll('.tabBox')
+        this.iNow =0 //计数器
+        this.init();//页面加载事件
+      }
+      init() {
+        for (let i = 0; i < this.aBtn.length; i++) {
+          this.aBtn[i].onclick = function () {
+            this.iNow =i
+            this.hide()
+            this.show(i)
+            document.title =this.iNow;
+          }.bind(this); //校正this指向
+        }
+      }
+      hide() {
+        for (let i = 0; i < this.aBtn.length; i++) {
+          this.aBtn[i].className = '';
+          this.aDiv[i].style.display = 'none';
+        }
+      }
+      show(index) {
+        this.aBtn[index].className = 'on';
+        this.aDiv[index].style.display = 'block';
+      }
+    }
+
+    //extends实现继承 第一个tab切换方法
+    class AutoTab extends Tab{
+      constructor(id){
+        super(id) //为了不覆盖
+        setInterval(this.next.bind(this),1000)
+      }
+      next(){
+        this.iNow++
+        if(this.iNow == this.aBtn.length){
+          this.iNow =0
+        }
+        this.hide()
+        this.show(this.iNow)
+      }
+    }
+
+    window.onload = function () {
+      new Tab('box');
+      new AutoTab('box2');
+    }
+  </script>
+<body>
+  <div id="box" class="box">
+    <input class="inputs on" type="button" value="aaa">
+    <input class="inputs" type="button" value="bbb">
+    <input class="inputs" type="button" value="ccc">
+    <div class="tabBox" style="display: block;">1111</div>
+    <div class="tabBox">2222</div>
+    <div class="tabBox">3333</div>
+  </div>
+
+<!-- 继承 -->
+  <div id="box2" class="box">
+      <input class="inputs on" type="button" value="aaa">
+      <input class="inputs" type="button" value="bbb">
+      <input class="inputs" type="button" value="ccc">
+      <div class="tabBox" style="display: block;">1111</div>
+      <div class="tabBox">2222</div>
+      <div class="tabBox">3333</div>
+    </div>
+</body>
+
+</html>

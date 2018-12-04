@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  var p1 = new Promise(function (resolve, reject) {
+    reject('失败')
+  })
+  //then成功后
+  p1.then(function (value) {
+    console.log(value)
+  }, function (err) { //失败回调
+    console.log(err);
+    return err + `，失败了的下一次回调`
+  }).then(function (err) {
+    console.log(`----` + err)
+  })
+
+
+  Promise.reject('这是错误的信息').then(function (value) {
+      console.log(value)
+  },function (res) {
+      console.log(res)
+  })
+</script>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let p1 = new Promise(function (resolve,reject) {
+        reject('失败')
+    });
+
+    p1.then(function (value) {
+        console.log(value);
+        throw '走的是错误的信息'
+    }).catch(function (err) {
+        console.log('这行代码 '+err)
+    })
+</script>

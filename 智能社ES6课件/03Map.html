@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>智能社——http://www.zhinengshe.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+
+  </style>
+  <script>
+    var map = new Map();
+    map.set('a', 'apple');
+    
+    // 给Map对象设置key/value 键/值对， 返回这个Map对象
+    map.set('b', 'banana');
+
+    //返回布尔值， 其实就是返回Map对象是否有指定的key；
+    // console.log(map.has('a'));
+
+    //返回一个迭代器，迭代器按照插入的顺序返回每一个key元素；
+    // console.log(map.keys());
+
+    //alert(map['a']);
+
+    // 回Map对象key相对应的value值；
+    // console.log(map.get('b'));
+
+    // 删除指定的键/值对；
+    // map.delete('a');
+
+    //删除所有的键/值对
+    // map.clear();
+
+    //迭代器按照对象的插入顺序返回[key, value]
+    for (var [key, value] of map.entries()) {
+      console.log(key, value);
+    }
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+</head>
+
+<body>
+    <div id="box">
+      <span>2222</span>
+    </div>
+    <br>
+    <div id="box2">
+      <span>1111</span>
+    </div>
+</body>
+
+</html>
+<script>
+    var b = '不忘初心';
+    var str = '为什么在习近平眼中出' + b + '新华网';
+   document.getElementById("box").prepend(str); //开头插入节点
+
+   let c ='getElementsByTagName是一个方法'
+    let str2 = `其中test的父标签id的值，div为标签的名。+++ ${c} ++++返回的是一个数组`
+    document.getElementById("box2").append(str);//结束插入节点
+  </script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>智能社——http://www.zhinengshe.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+
+  </style>
+  <script>
+    // window.onload=function(){
+        //     var aBtn=document.getElementsByTagName('input');
+
+        //     for(var i=0; i<aBtn.length; i++){
+        //         (function(i){
+        //             aBtn[i].onclick=function(){
+        //                 alert(i);
+        //             }
+        //         })(i);
+        //     }
+        // };
+    </script>
+</head>
+
+<body>
+  <p>获取索引</p>
+  <div>
+      <input type="button" value="aaa">
+      <input type="button" value="bbb">
+      <input type="button" value="ccc">
+  </div>
+  <br>
+  <div>
+    <button>111</button>
+    <button>222</button>
+    <button>333</button>
+  </div>
+</body>
+
+</html>
+<script>
+  var input = document.getElementsByTagName('input')
+  for (var i = 0; i < input.length; i++) {
+    (function (i) {
+      input[i].onclick = function () {
+        console.log(i)
+      }
+    })(i)
+  }
+
+var button = document.getElementsByTagName('button')
+  for(let i=0;i<button.length;i++){
+    button[i].onclick =function(){
+      console.log(i)
+    }
+  }
+</script>
