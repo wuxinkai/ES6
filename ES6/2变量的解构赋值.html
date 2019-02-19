@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  //简单数组赋值
+  let  [a,b,c]=[1,2,3];
+  console.log(a,b,c);
+
+  //简单对象赋值
+  let {w,r,e,m,n} = {e: 5, w:function(){ return 12}, r: '101',m:[1,3],n:{a:1}};
+  console.log(w,r,e,m,n);
+
+  //字符串结构赋值
+  const [gg,hh,kk]="西游记";
+  console.log(gg,hh,kk);
+
+  //给默认值
+  let  [d,f='默认值'] = ['赋值']
+  console.log(d,f);
+
+  let {y,u=4,i=6} = {y: 5,};
+  console.log(y,u,i)
+  
+  //undefined 和null，改变默认值
+  let  [k,z='没有改变'] = ['赋值1',undefined]
+  let  [l,x='改变'] = ['赋值2',null]
+  console.log(k,z); //undefined不会被修改
+  console.log(l,x);//null 会被修改
+
+  //先声明后赋值出现的问题,解决办法
+  let foo
+  ({foo} = {foo:"0000"})
+  console.log(foo);
+
+</script>

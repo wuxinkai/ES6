@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  //b=3 给默认值和简写方式
+  let add2 = (a, b = 3) => a + b
+  console.log(`给默认值和简写方式`, add2(1, 2));
+
+  //this是window
+  //箭头函数不是使用构造函数
+  // 箭头函数都是严格模式
+  // 箭头函数不能使用 arguments 
+  add2 = (a, b = 1) => {
+    return a + b
+  }
+  console.log(add2(1, 6));
+
+  //主动抛出错误
+  function add(a) {
+    if (a == 0) {
+      // throw new Error('This is error','手动抛出错误')
+    }
+    return a;
+  }
+  console.log(add(0));
+  console.log(`获取参数个数`, add.length);
+
+  //对象的函数解构
+  let json = {
+    a: '从新赋值1',
+    b: '从新赋值2'
+  }
+  let fun = ({
+    a,
+    b = '默认值'
+  }) => {
+    console.log(`对象给箭头`,a, b);
+  }
+  fun(json);
+
+  //数组给箭头函数默认值
+  let arr2 = ['箭头', '数默', '默认值'];
+  let fun2 = (a, b, c)=> {
+    console.log(`数组给箭头`, a, b, c);
+  }
+  fun2(...arr2);
+
+
+</script>

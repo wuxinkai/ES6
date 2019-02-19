@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .on {
+            background: #f60;
+            color: #fff
+        }
+        
+        .box div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="box">
+        <input class="on" type="button" value="aaa">
+        <input type="button" value="bbb">
+        <input type="button" value="ccc">
+        <div style="display: block;">1111</div>
+        <div>2222</div>
+        <div>3333</div>
+    </div>
+    <div id="box2" class="box">
+        <input class="on" type="button" value="aaa">
+        <input type="button" value="bbb">
+        <input type="button" value="ccc">
+        <div style="display: block;">1111</div>
+        <div>2222</div>
+        <div>3333</div>
+    </div>
+</body>
+
+</html>
+<script>
+    class Tab {
+        constructor(id) {
+            this.oBox = document.getElementById(id);
+            this.oBtn = this.oBox.getElementsByTagName('input');
+            this.oDiv = this.oBox.getElementsByTagName('div');
+            this.iNow = 0;
+            this.init()
+        }
+        init() {
+
+            for (let i = 0; i < this.oBtn.length; i++) {
+                this.oBtn[i].onclick = function() {
+                    this.iNow = i;
+                    this.hide()
+                    this.show(i)
+                }.bind(this)
+            }
+        }
+        hide() {
+            for (let i = 0; i < this.oBtn.length; i++) {
+                this.oBtn[i].className = ''
+                this.oDiv[i].style.display = 'none';
+            }
+
+        }
+        show(i) {
+            this.oBtn[i].className = 'on'
+            this.oDiv[i].style.display = 'block';
+        }
+    }
+    class AutoTab extends Tab {
+        constructor(id) {
+            super(id)
+            setInterval(this.next.bind(this), 1000);
+        }
+        next() {
+            this.iNow++;
+            if (this.iNow == this.oBtn.length) {
+                this.oBtn = 0;
+            }
+            this.hide();
+            this.show(this.iNow);
+        }
+    }
+    window.onload = function() {
+        new Tab('box')
+        new AutoTab('box2')
+    }
+</script>

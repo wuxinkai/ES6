@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  let state = 1
+  let state2 = 2
+  let state3 = 1
+
+  // resolve 成功   reject 失败
+  function step1(resolve, reject) {
+    console.log('第一步');
+    if (state == 1) {
+      setTimeout(function () {
+        resolve('成功-第一步-结果')
+      }, 2000)
+    } else {
+      reject('失败-第一步-结果')
+    }
+  }
+
+  function step2(resolve, reject) {
+    console.log('第二步');
+    if (state2 == 1) {
+      resolve('第二步成功')
+    } else {
+      reject('第二步失败')
+    }
+  }
+
+  function step3(resolve, reject) {
+    console.log('第三步');
+    if (state3 == 1) {
+      resolve('成功第三步')
+    } else {
+      reject('成功第三步')
+    }
+  }
+  //所谓Promise对象，就是代表了未来某个将要发生的事件（通常是一个异步操作）。它的好处在于，有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数
+  Promise
+  //第一步执行
+  new Promise(step1).then(function (val) {
+    console.log(val);
+    return new Promise(step2); //执行第二步
+  }).then(function (val) {
+    console.log(val);
+    return new Promise(step3); //执行第三步
+  }).catch(function (val) { //catch 捕获错误
+    console.log(val);
+    return val;
+  });
+</script>

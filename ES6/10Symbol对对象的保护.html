@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //对元素对象的保护作用
+    let f = Symbol('1234')
+    console.log(f) //Symbol 类型
+    console.log(`字符串`, f.toString()) //字符串类型
+
+    //对象中的用法
+    let b = Symbol()
+    let obj = {
+        [b]: '类型'
+    }
+    console.log(obj); //{Symbol(): "类型"}
+    obj[b] = 'web'
+    console.log(obj); //{Symbol(): "web"}
+
+
+    //保护对象
+    var obj2 = {
+        name: '杨明',
+        skill: 'web',
+        age: 32
+    };
+    for (let item in obj2) {
+        console.log(obj2[item]);
+    }
+    console.log(`---------------------`);
+    let obj3 = {
+        name: 'jspang',
+        skill: 'web'
+    };
+    let age = Symbol(); //保护作用
+    obj3[age] = 18;
+    for (let item in obj3) {
+        console.log(obj3[item]); //获取不到18
+    }
+    console.log(obj3) //里面是有18的
+</script>

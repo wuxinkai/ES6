@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Array.from() : 从一个类似数组或可迭代对象中创建一个新的数组实例</h2>
+  <h2>Array.of()</h2>
+  <h2>[...arr7]</h2>
+  <h2>Array.of()</h2>
+</body>
+</html>
+<script>
+  //赋值数组 在同一内存下，会同时删除同一内容的
+  let arr = [1,2,3,4]
+  let arr2 = arr
+  arr2.pop()
+  console.log(`赋值数组`, arr,arr2);
+
+  //空数组存内容,不在同一内存下，两个数组互补影响
+  let arr3 = [5,6,7,8,9]
+  let arr4 =[]
+  for(let i=0;i<arr3.length;i++){
+    arr4[i] = arr3[i]
+  }
+  arr3.pop()
+  console.log(`老办法`,arr3,arr4);
+
+  //不在统一内存下互不影响
+  //Array.from 从一个类似数组或可迭代对象中创建一个新的数组实例
+  let arr5 =[2,3,4,5]
+  let arr6 = Array.from(arr5)
+  arr6.pop()
+  console.log(`Array.from`,arr6,arr5);
+
+  //...arr 不在同一内存下，互不影响
+  let arr7 =[2,3,4,5]
+  let arr8 = [...arr7]
+  arr7.pop()
+  console.log(`...不在同一内存下，互不影响`,arr7,arr8);
+
+  //JSON数组格式转换
+  let  json = {
+    '0': '奔驰',
+    '1': '宝马',
+    '2': '大众',
+    length:3
+  }
+  let arr9 = Array.from(json)
+  console.log(arr9); 
+
+//Array.of 一堆文本或者变量转换成数组,一个类似数组的字符串，需要使用eval来进行转换
+let arr10 =Array.of(3,4,5,6);
+console.log(`数字转换成数组。`,arr10);
+
+let arr11 =Array.of('帕萨特','楼兰','迈腾');
+console.log(`字符串转为对象----- `,arr11);
+
+//字符串转为 数字类型
+let string = '2,3,4,5'
+let  arr20 =[]
+let arrNum  =string.split(',')
+console.log(`字符串转为 数字类型`, arrNum);
+for(let value of arrNum){
+  arr20.push(Number(value))
+}
+console.log(`转成字符串`+ arr20); //转成字符串
+
+
+//find( )实例方法，查询某一个
+// value：表示当前查找的值。
+// index：表示当前查找的数组索引。
+// arr：表示当前数组
+let arr12=[1,2,3,4,5,6,7,8,9];
+console.log(arr12.find(function(value,index,arr){
+  // console.log(value,index,arr);
+    return value > 5;
+}))
+
+//filter 查出比她大的所有的
+console.log(arr12.filter(x=>{
+  return x > 5;
+}))
+
+//fill( )实例方法 替换数组中的某一项
+let arr13=[0,1,2,3,4,5,6,7,8,9];
+arr13.fill('替换',2,5) //将2,3，4替换
+console.log(`替换`,arr13);
+
+
+//rest运算符
+function text(first,...arg){
+    console.log(first,arg.length); //first =0
+}
+text(0,1,2,3,4,5,6,7); //结果是7
+
+//for Of循环 entries() 索引和值都能出来
+let arr14=['本田','丰田','奔驰']
+for (let [index,item] of arr14.entries()){
+    console.log(`for Of循环`,index,item);
+}
+
+//断开循环转为对象
+let arr15=['迈凯伦','尼桑','比亚迪']
+let list=arr15.entries();
+console.log(`next断开循环`,list.next().value);
+console.log(`next断开循环`,list.next().value);
+console.log(`next断开循环`,list.next().value);
+
+
+</script>

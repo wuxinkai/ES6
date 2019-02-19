@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  //如果是对象用WeakSet
+  let weakObj = new WeakSet();
+  let obj3 = {
+    a: '马化腾',
+    b: '马云'
+  }
+  let obj4 = {
+    a: '马化腾',
+    b: '马云'
+  }
+  weakObj.add(obj3); //不再同一内容是可以存在的
+  weakObj.add(obj4);
+  console.log(`WeakSet`, weakObj);
+
+  //把内存3指向内存4就相同了
+  // obj3 = obj4
+  // weakObj.add(obj3);
+  // console.log(`在同一内存下`, weakObj);
+</script>

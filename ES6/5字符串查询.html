@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>字符串查询</h1>
+</body>
+
+</html>
+<script>
+  //通过indexOf索引去查询
+  let a = `而且支持中文`
+  let b = `ES6还增加了字符串的查找功能，而且支持中文哦，小伙伴是不是很兴奋`
+  console.log(b.indexOf(a) > -1);
+
+  //ES6直接用includes就可以判断，不再返回索引值
+  let c = 'includes';
+  let y = 'ES6';
+  let u = '喜欢';
+  let d = 'ES6直接用includes就可以判断，不再返回索引值，这样的结果我们更喜欢';
+  //判断内容当中
+  console.log(d.includes(c));
+  //判断开通
+  console.log(d.startsWith(y));
+  //判断结尾
+  console.log(d.endsWith(u));
+
+  // 复制字符串
+  let f = '赋值字符串, ';
+  document.write(f.repeat(3));
+  console.log(f.repeat(3));
+</script>

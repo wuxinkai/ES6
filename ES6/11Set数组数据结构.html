@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  //Set数据结构，和json数据一样 都是数据结构
+  //Set的声明,里面都是数组
+  //不能有相同的内容
+  //缺点不能放对象
+  let setArr = new Set(['jspang', '刘德华', 'web', '马化腾', '王健林']);
+  console.log(setArr);
+
+  //Set值的增删查
+  //追加add：
+  setArr.add('小明');
+  setArr.add('刘德华'); //追加不进去已经有了
+  console.log(`1`, setArr)
+
+  //查询
+  console.log(`2`, setArr.has('刘德华'));
+  console.log(`3`, setArr.has('马云'));
+
+  // 获取个数
+  console.log(setArr.size);
+
+  //删除某一个
+  setArr.delete('王健林')
+  console.log(setArr);
+
+  //删除所有
+  setArr.clear()
+  console.log(setArr);
+
+  // 循环set的循环 for…of…循环
+  let setArr2 = new Set(['刘德华', '刘德华', 'web', '马化腾', '王健林']);
+  for (let item of setArr2) {
+    console.log(`for…of…循环`, item);
+  }
+  setArr2.forEach((value) => console.log(`forEach`, value));
+</script>

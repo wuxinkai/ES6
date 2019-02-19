@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>1新的声明方式</h1>
+  <p>获取索引</p>
+  <div>
+    <input type="button" value="aaa">
+    <input type="button" value="bbb">
+    <input type="button" value="ccc">
+  </div>
+  <br>
+  <div>
+    <button>111</button>
+    <button>222</button>
+    <button>333</button>
+  </div>
+
+
+</body>
+
+</html>
+<script>
+  //let 被花括号包起来的都是私有变量
+  //let 变量不能重复声明
+  //let 变量内容可以被覆盖
+  //let 不存在变量提升
+  {
+    let a = 12
+    console.log('let ' + a);
+  }
+  // console.log('let '+a); //访问不到
+
+  // var 声明的是全局变量
+  // var 有变量提升
+  {
+    var b = 12
+    console.log('var ' + b);
+  }
+  console.log('var ' + b);
+</script>
+
+<script>
+  var input = document.getElementsByTagName('input')
+  //var 解决索引
+  for (var i = 0; i < input.length; i++) {
+    //通过闭包保存索引
+    (function (i) {
+      input[i].onclick = function () {
+        console.log(i);
+      }
+    })(i)
+  }
+
+  //let 解决闭包
+  let button = document.getElementsByTagName('button')
+  for (let i = 0; i < button.length; i++) {
+    button[i].onclick = function () {
+      console.log(i);
+    }
+  }
+
+  // var循环体外会被污染
+  for (var i = 0; i < 5; i++) {
+    console.log(`var循环体内 ` + i);
+  }
+  console.warn(`var循环体外 ` + i);
+
+  // let循环体外会被污染
+  for (let j = 0; j < 5; j++) {
+    console.log(`var循环体内 ` + j);
+  }
+  // console.log(`var循环体内 ` + j); //循环体外获取不到
+
+  // -------------------------------------------------------
+  // const 只要被声明就无法修改，
+  // const 重复声明会报错
+  // const 不能先声明 后赋值
+  const s = 12;
+  // const d
+  // d = 3
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  //json数据
+  let json = {
+    name: '小米',
+    skill: '华为'
+  }
+  console.log(`json`, json.name);
+
+  var map = new Map();
+
+  //内容作为属性名
+  map.set(json, '11111');
+  console.log(`Map`, map);
+
+  //内容作为属性值
+  map.set('22222', json);
+  console.log(`Map`, map);
+
+  //获取
+  console.log(map.get(json));
+  console.log(map.get('22222'));
+
+  //删除
+  console.log(map.delete(json));
+  console.log(map);
+
+  //长度
+  console.log(map.size);
+
+  //查找
+  console.log(map.has('22222'))
+
+  //删除全部
+  // console.log(map.clear());
+
+
+  //迭代器按照对象的插入顺序返回[key, value]
+  for (var [key, value] of map.entries()) {
+    console.log(`for of`,key, value);
+  }
+</script>
