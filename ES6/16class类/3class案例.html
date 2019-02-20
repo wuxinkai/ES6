@@ -63,7 +63,7 @@
       }
     }
     show(index) {
-      this.aBtn[index].className = 'active'
+      this.aBtn[index].className = 'on'
       this.aDiv[index].style.display = 'block'
     }
   }
@@ -83,8 +83,6 @@
       this.show(this.iNow)
     }
   }
-
-
   window.onload = function () {
     new Tab('box')
     new AutoTab('box2');

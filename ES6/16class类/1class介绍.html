@@ -28,12 +28,13 @@
   let p3 = new Person('小米', 18)
   console.log(`es5`,p3.showAge(), p3.showName())
 
+// es6的面向对象
   class Coder {
     //私有变量
     name(val) {
       console.log(val);
       return val
-    } //必要加逗号
+    } //不用加逗号
     skill(val) {
       //引用name的js
       console.log(`技能`, this.name('小米'), val);
