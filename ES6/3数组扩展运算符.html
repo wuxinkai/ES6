@@ -1,114 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
+  <h2>isArray 判断</h2>
   <h2>Array.from() : 从一个类似数组或可迭代对象中创建一个新的数组实例</h2>
-  <h2>Array.of()</h2>
+  <h2>Array.of()： 当参数是一个数字的时候，仍然返回的是一个数组，</h2>
   <h2>[...arr7]</h2>
   <h2>Array.of()</h2>
 </body>
+
 </html>
 <script>
   //赋值数组 在同一内存下，会同时删除同一内容的
-  let arr = [1,2,3,4]
+  let arr = [1, 2, 3, 4]
   let arr2 = arr
   arr2.pop()
-  console.log(`赋值数组`, arr,arr2);
+  console.log(`赋值数组`, arr, arr2);
 
   //空数组存内容,不在同一内存下，两个数组互补影响
-  let arr3 = [5,6,7,8,9]
-  let arr4 =[]
-  for(let i=0;i<arr3.length;i++){
+  let arr3 = [5, 6, 7, 8, 9]
+  let arr4 = []
+  for (let i = 0; i < arr3.length; i++) {
     arr4[i] = arr3[i]
   }
   arr3.pop()
-  console.log(`老办法`,arr3,arr4);
+  console.log(`老办法`, arr3, arr4);
 
   //不在统一内存下互不影响
   //Array.from 从一个类似数组或可迭代对象中创建一个新的数组实例
-  let arr5 =[2,3,4,5]
+  let arr5 = [2, 3, 4, 5]
   let arr6 = Array.from(arr5)
   arr6.pop()
-  console.log(`Array.from`,arr6,arr5);
+  console.log(`Array.from`, arr6, arr5);
 
   //...arr 不在同一内存下，互不影响
-  let arr7 =[2,3,4,5]
+  let arr7 = [2, 3, 4, 5]
   let arr8 = [...arr7]
   arr7.pop()
-  console.log(`...不在同一内存下，互不影响`,arr7,arr8);
+  console.log(`...不在同一内存下，互不影响`, arr7, arr8);
 
   //JSON数组格式转换
-  let  json = {
+  let json = {
     '0': '奔驰',
     '1': '宝马',
     '2': '大众',
-    length:3
+    length: 3
   }
   let arr9 = Array.from(json)
-  console.log(arr9); 
+  console.log(arr9);
 
-//Array.of 一堆文本或者变量转换成数组,一个类似数组的字符串，需要使用eval来进行转换
-let arr10 =Array.of(3,4,5,6);
-console.log(`数字转换成数组。`,arr10);
+  //Array.of 一堆文本或者变量转换成数组,一个类似数组的字符串，需要使用eval来进行转换
+  let arr10 = Array.of(3, 4, 5, 6);
+  console.log(`数字转换成数组。`, arr10);
 
-let arr11 =Array.of('帕萨特','楼兰','迈腾');
-console.log(`字符串转为对象----- `,arr11);
-
-//字符串转为 数字类型
-let string = '2,3,4,5'
-let  arr20 =[]
-let arrNum  =string.split(',')
-console.log(`字符串转为 数字类型`, arrNum);
-for(let value of arrNum){
-  arr20.push(Number(value))
-}
-console.log(`转成字符串`+ arr20); //转成字符串
+  let arr11 = Array.of('帕萨特', '楼兰', '迈腾');
+  console.log(`字符串转为对象----- `, arr11);
 
 
-//find( )实例方法，查询某一个
-// value：表示当前查找的值。
-// index：表示当前查找的数组索引。
-// arr：表示当前数组
-let arr12=[1,2,3,4,5,6,7,8,9];
-console.log(arr12.find(function(value,index,arr){
-  // console.log(value,index,arr);
-    return value > 5;
-}))
 
-//filter 查出比她大的所有的
-console.log(arr12.filter(x=>{
-  return x > 5;
-}))
-
-//fill( )实例方法 替换数组中的某一项
-let arr13=[0,1,2,3,4,5,6,7,8,9];
-arr13.fill('替换',2,5) //将2,3，4替换
-console.log(`替换`,arr13);
+  //字符串转为 数字类型
+  let string = '2,3,4,5'
+  let arr20 = []
+  let arrNum = string.split(',')
+  console.log(`字符串转为 数字类型 split: `, arrNum);
+  for (let value of arrNum) {
+    arr20.push(Number(value))
+  }
+  console.log(`转成字符串split:` + arr20); //转成字符串
 
 
-//rest运算符
-function text(first,...arg){
-    console.log(first,arg.length); //first =0
-}
-text(0,1,2,3,4,5,6,7); //结果是7
 
-//for Of循环 entries() 索引和值都能出来
-let arr14=['本田','丰田','奔驰']
-for (let [index,item] of arr14.entries()){
-    console.log(`for Of循环`,index,item);
-}
-
-//断开循环转为对象
-let arr15=['迈凯伦','尼桑','比亚迪']
-let list=arr15.entries();
-console.log(`next断开循环`,list.next().value);
-console.log(`next断开循环`,list.next().value);
-console.log(`next断开循环`,list.next().value);
+  //find( )实例方法，查询某一个，先遍历数组 一旦返回true 停止查找 返回当前项，
+  // value：表示当前查找的值。
+  // index：表示当前查找的数组索引。
+  // arr：表示当前数组
+  let arr12 = [1, 2, 3, 4, '有这个', 6, 7, 8, 9];
+  let find = arr12.find(function (value, index, arr) {
+    // console.log(value,index,arr);
+    // return value === 'q'; //没有返回undefined
+    return value === '有这个'; //查找到就返回当前这项
+    // return value > 3; //一旦返回true就不会往下找了，只会找一个
+  })
+  console.log(`find：`, find)
 
 
+
+
+  //filter： 过滤方法， 查出比她大的所有的
+  let fildata = ['过滤方法', 1, '不要汉字', 2, '只要nember', 4, 5]
+  let filter = fildata.filter((item, index) => {
+    // return true   //返回 true是留下当前项，如果是false就不要当前项 ，返回一个新数组原数组不变，false返回的是空数组什么都没了
+    // return typeof item === 'number';
+    return typeof item !== 'number';
+  })
+  console.log(`filter：`, filter) //返回新数组 原数组不变
+
+
+
+  //filterIndex  先遍历数组，一旦返回true停止查找 返回当前项的索引
+  let filterIn = [2, 1, 3, 4, 'findeIndex', 5]
+  let finIndex = filterIn.findIndex((item) => {
+    return item == 'findeIndex'
+  })
+  console.log('当前的索引是第四个findeIndex:',finIndex)
+
+
+  //fill(开始位置 ，开始替换位置，结束替换位置)实例方法 替换数组中的某一项 ， 按照指定字符替换数组， 在修改中会应用到
+  let arr13 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  // arr13.fill('fill替换') 替换每一个位置
+  // arr13.fill(2,'fill替换') 从索引第二个开始全部替换
+
+  // arr13.fill('fill替换', 2, 5) //将2,3，4替换，
+  arr13.fill('fill替换', 2, 3) //做修改的时候，可以查到索引，后替换当前的
+  console.log(`fill替换结果`, arr13);
+
+
+  //rest运算符
+  function text(first, ...arg) {
+    console.log(first, arg.length); //first =0
+  }
+  text(0, 1, 2, 3, 4, 5, 6, 7); //结果是7 
+
+  //for Of循环 entries() 索引和值都能出来
+  let arr14 = ['本田', '丰田', '奔驰']
+  for (let [index, item] of arr14.entries()) {
+    console.log(`for Of循环`, index, item);
+  }
+
+  //断开循环转为对象
+  let arr15 = ['迈凯伦', '尼桑', '比亚迪']
+  let list = arr15.entries();
+  console.log(`next断开循环`, list.next().value);
+  console.log(`next断开循环`, list.next().value);
+  console.log(`next断开循环`, list.next().value);
+
+
+  // copyWithin : 从元素组中读取内容 替换指定位置的数组内容 参数：(开始位置，查找的开始位置，查找的结束位置)， 会修改原数组
+
+  let ary = [1, 2, 3, 4, 5, 6, 6, 7, 8]
+  console.log(ary.copyWithin(4, 0, 2)) //不包括索引2】
+  // console.log(ary.copyWithin(4,0)) //没写最后一个参数，默认到结束位置
+
+  //includes 判断数组中是否有这一项
+   let includesData = [1, 2, 3, 4, 'includes这项', 6, 6, 7, 8]
+   console.log(`includes 判断数组中是否有这一项`,includesData.includes('includes这项'))
+   console.log(`指定查找位置`,includesData.includes('includes这项',4)) //
+  
+  
+   // every  遍历数组，如果每一项返回true，最后返回的为true  只要有一个返回false就是  false
+  let everyData = [1, 2, 3, 4, 6, 6, 7, 8]
+  let  info= everyData.every((item)=>{
+    return typeof item === 'number'
+  })
+  console.log('every 只有所有的是true才是true',info)
+
+
+
+  // some  遍历数组，只要有一个true就是true
+  let someData = ['1','5', '8','Y']
+  let  someInfo= someData.some((item)=>{
+    return typeof item === 'number'
+  })
+  console.log('some 只要有一个正确就是true',someInfo)
+  
+  // reduce  迭代，
+  let reduceDta  = [1,2,3,4,5,6]
+  let reduceInfo =reduceDta.reduce((prev,item)=>{ //prev 是前一项的返回值，item是当前项
+    return prev+item
+  },10)//prev 第一次没有值，要想第一次有值在最后追加内容
+  console.log(reduceInfo)
+
+  // reduceRight  和 reduce一样 顺序从右往左执行
+
+
+  // keys  用来遍历每一项的,获取的是每一项的索引，
+  let keyDta =['a','b','c','d','e']
+
+  for(let key of keyDta.keys()) {
+    console.log(`key获取的是索引`,key)
+  }
+
+  for(let item of keyDta) {
+    console.log(`获取的是内容`,item)
+  }
+
+  // entries 可以遍历 索引和每一项 ，数组形式出现
+  for(let item of keyDta.entries()) {
+    console.log(`entries获取的是内容和索引`,item)
+  }
 </script>

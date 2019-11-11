@@ -1,60 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-
-<body>
-
-</body>
-
+  <body></body>
 </html>
 <script>
   //es5 面向继承
   function Person(name, age) {
     this.name = name;
     this.age = age;
-    Person.prototype.showName = function () {
-      return this.name
-    }
-    Person.prototype.showAge = function () {
-      return this.age
-    }
+    Person.prototype.showName = function() {
+      return this.name;
+    };
+    Person.prototype.showAge = function() {
+      return this.age;
+    };
   }
-  let p3 = new Person('小米', 18)
-  console.log(`es5`,p3.showAge(), p3.showName())
+  let p3 = new Person("小米", 18);
+  console.log(`es5`, p3.showAge(), p3.showName());
 
-// es6的面向对象
+  // es6的面向对象
   class Coder {
     //私有变量
     name(val) {
       console.log(val);
-      return val
+      return val;
     } //不用加逗号
     skill(val) {
       //引用name的js
-      console.log(`技能`, this.name('小米'), val);
+      console.log(`技能`, this.name("小米"), val);
     }
     //原型上的方法
     constructor(a, b) {
-      this.a = a
-      this.b = b
+      this.a = a;
+      this.b = b;
     }
     add() {
-      return this.a + this.b
+      return this.a + this.b;
     }
   }
-  let p1 = new Coder(1, 2)
-  p1.name('wu')
-  p1.skill('web')
+  let p1 = new Coder(1, 2);
+  p1.name("wu");
+  p1.skill("web");
   console.log(p1.add());
 
   //原型继承
   class htmls extends Coder {}
-  let p2 = new htmls
-  p2.skill('继承成功') //可以调用Coder的方法
+  let p2 = new htmls();
+  p2.skill("继承成功"); //可以调用Coder的方法
 </script>

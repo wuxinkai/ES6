@@ -31,6 +31,7 @@ npm install --save-dev babel-preset-es2015 babel-cli
 * let 变量不能重复声明
 * let 变量内容可以被覆盖
 * let 不存在变量提升
+* let 部能给window增加属性
 ```
  {
     let a = 12
@@ -83,6 +84,31 @@ let  [a,b,c]=[1,2,3];
  let foo
   ({foo} = {foo:"0000"})
   console.log(foo);
+```
+左侧写个函数，只有右侧是undefined的时候才会执行代码，其他都没有用
+```
+  let [m2, n2 = function(){
+    return '必须是undefined我才自执行'
+  }()] = [1, undefined]
+  console.log(m2, n2)
+```
+不定参数赋值
+```
+let [y1,y2,...y3] = [1,2,3,4,5]
+console.log(y1,y2,y3) //1 ,2 ,[3, 4, 5]
+```
+函数结构赋值
+```
+  //函数结构赋值
+  function getA({name=12,age='小明'}={}){
+    console.log(name,age)
+  }
+getA()
+```
+字符串解构赋值:使用数组结果赋值，右侧不是数组，默认将其转为类数组。 内部必须有length属性
+```
+let [a,b,c] ="123"
+console.log(a,b,c) // 1 2 3
 ```
 # 数组扩展运算符（…）
 * Array.from 从一个类似数组或可迭代对象中创建一个新的数组实例

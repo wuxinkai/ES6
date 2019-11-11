@@ -41,4 +41,19 @@
   ({foo} = {foo:"0000"})
   console.log(foo);
 
+
+  let [m2, n2 = function(){
+    return '必须是undefined我才自执行'
+  }()] = [1, undefined]
+  console.log(m2, n2)
+
+  //转换
+  let [y1,y2,...y3] = [1,2,3,4,5]
+  console.log(y1,y2,y3)
+
+  //函数结构赋值
+  function getA({name=12,age='小明'}={}){
+    console.log(name,age)
+  }
+getA()
 </script>

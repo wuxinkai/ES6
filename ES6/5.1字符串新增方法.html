@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  // includes， 判断字符串有没有指点字符 ， 返回值布尔 true false
+  //includes 
+  let str = "1234awdc567,"
+  console.log(str.includes('a')) //判断里面是否有a 这个字母
+
+  console.log(str.includes('wdc', 5)) //索引从第五个开始， 第二个参数不是数字默认转为数字
+
+  // startsWith 和endsWith
+  //startsWith( 指定字符作为开头,开始查找的位置)
+  console.log(str.startsWith('3', 2)) //2是索引
+
+  //指定字符作为结尾 endsWith（指定结束字母，从前面的第多少个开始，）
+  console.log(str.endsWith('4', 4)) // 4不是索引是 length
+
+  // repeat(num) 将字符串重复多少次
+  // num 不可以是负数 或者 infinity无穷
+  console.log(str.repeat(2))
+
+
+  // 按照指定字符 补全字符串 padStart padEnd
+  let str1 = "ab"
+  let str2 = '要追加的字符串'
+  console.log(str1.padStart(str2.length + str1.length, str2)) //参数.padStart(长度length,"要填写的内容") 
+  console.log(str1.padStart(10, ',p')) //追加 8个p
+  console.log(str1.padEnd(10, ',p')) //追加 8个p
+
+
+  //
+  // 实例方法：trimStart()，trimEnd() 
+  const s = '  abc  ';
+
+  console.log(s.trim()) //不要空格 "abc"
+  console.log(s.trimStart()) //开始空格不要 "abc  "
+  console.log(s.trimEnd()) //不要结束空格 "  abc"
+</script>
