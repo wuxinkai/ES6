@@ -53,19 +53,57 @@
   }
 
   console.log(`--------------------for of不能循环json,for in可以-----------------------------`);
-    var json = {
-      'a': 'apple',
-      'b': 'banan',
-      'c': 'pear',
-      'd': 'orange'
-    };
-   
-    for (var i in json) {
-      console.log(i + '=' + json[i])
-    }
-    //不能循环json
-    // for (var name of json) {
-    //   console.log(name);
-    // }
+  var json = {
+    'a': 'apple',
+    'b': 'banan',
+    'c': 'pear',
+    'd': 'orange'
+  };
+
+  for (var i in json) {
+    console.log(i + '=' + json[i])
+  }
+  //不能循环json
+  // for (var name of json) {
+  //   console.log(name);
+  // }
+
+
+  // es6做删除
+  let arrData = [{
+      id: 1,
+      value: '1'
+    },
+    {
+      id: 2,
+      value: '2'
+    },
+    {
+      id: 3,
+      value: '3'
+    },
+    {
+      id: 4,
+      value: '5'
+    },
+    {
+      id: 5,
+      value: '6'
+    },
+    {
+      id: 6,
+      value: '7'
+    },
+  ]
+  // filter 过滤做删除
+ let delrArr = arrData.filter(({ id}) => id !== 4);
+ debugger
+  console.log('filter做删除  4被删除',delrArr)
+
+  //splice 和 findIndex
+  let spliceDel =arrData.splice(arrData.findIndex(item => item.id === 2), 1)
+    console.log('splice和findIndex id==2 被删除 ',arrData)
+
+
 
 </script>

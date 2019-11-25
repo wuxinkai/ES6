@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  //异步问题 ,async 默认返回promise
+  async function getA() {
+    // throw new Error('主动抛出一个错误')
+    return '123445567678990'
+  }
+  getA().then((res) => {
+    console.log('成功', res)
+  }).catch((e) => {
+    console.log('失败', e)
+  })
+
+  // await ：后面的值跟的是一个promise对象，如果不是promise对象，会主动转为promise对象
+  let p = new Promise((resolve, reject) => {
+    resolve('成功的内容')
+  })
+
+  //等到返回结果
+  let t = new Promise((resolve, reject) => {
+    setInterval(() => {
+      resolve('成功的内容')
+    }, 5000)
+  })
+
+  function f() {
+    setInterval(() => {
+      return '成功的内容'
+    }, 5000)
+  }
+
+  async function getB() {
+    //默认转为promise对象
+    // let content = await p
+    // let content = await t
+    let content = await f()
+    console.log(content)
+  }
+
+  getB()
+</script>

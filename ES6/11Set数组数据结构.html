@@ -16,10 +16,10 @@
 <script>
   //Set数据结构，和json数据一样 都是数据结构
   //Set的声明,里面都是数组
-  //不能有相同的内容
+  //默认去重 不能有相同的内容
   //缺点不能放对象
-  let setArr = new Set(['jspang', '刘德华', 'web', '马化腾', '王健林']);
-  console.log(setArr);
+  let setArr = new Set(['jspang', '刘德华', 'web', '马化腾', '王健林']); //数组或类数组
+  console.log(setArr); //是个对象，只有value没有key 属性名
 
   //Set值的增删查
   //追加add：
@@ -48,4 +48,70 @@
     console.log(`for…of…循环`, item);
   }
   setArr2.forEach((value) => console.log(`forEach`, value));
+
+  // set属性 set实例的大小个数
+  // add  增加，如果就加上，有就加不上
+  let set1 = new Set([1, 3, '这个', '細則', null, NaN, true])
+  //对象无法判断去重，数组可以
+  console.log('用new Set解决去重,链式写法', set1.add(10).add(11).add(12).add({
+    name: '小明',
+    age: 13
+  }).add({
+    name: '小明',
+    age: 13
+  }))
+  // console.log('将Set转为数组',  Array.from(set1))
+  console.log('将Set转为数组', [...set1])
+  //去重方法
+  function unique(set1) {
+    return [...set1]
+    // return Array.from(set1)
+  }
+
+  // delete 删除 返回值是 true或false，有这一项句能删除，没有就无法删除
+  console.log('删除set', set1.delete(3))
+  console.log('删除后的值，，没有3了', set1)
+
+  // clear 没有返回值
+  console.log('清空clear', set1.clear())
+  console.log('清空clear', set1)
+
+  //  has 判断有没有
+  let set3 = new Set(['1', 3, 'youx', true, NaN, {
+    name: '小明',
+    age: 13
+  }])
+
+  console.log(`判断有没有has `, set3.has(true))
+  //无法判断对象
+  console.log(`判断有没有has `, set3.has({
+    name: '小明',
+    age: 13
+  }))
+
+  // forEach 遍历
+  let set4 = new Set(['1', 3, 'youx', true, NaN, {
+    name: '小明',
+    age: 13
+  }])
+  set4.forEach((item, index, input) => {
+    //Set实例只有value 没有key
+    //item index 当前项
+    // input 当前设置的实例
+    console.log('forEach', item, index, input)
+  })
+
+  // keys
+  for (let key of set4.keys()) {
+    //keys 也是value
+    console.log(`keys的应用`, key)
+  }
+  // values 
+  for (let key of set4.values()) {
+    console.log(`values的应用`, key)
+  }
+  // entries
+  for (let [item, val] of set4.entries()) {
+    console.log(`entries的应用`, item, val)
+  }
 </script>

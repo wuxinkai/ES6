@@ -79,7 +79,14 @@
     c: '成功'
   };
   let d = Object.assign(a, b, c)
-  console.log(d);
+
+  console.log(`Object.assign合并对象`, d);
+  let school = {
+    ...a,
+    ...b,
+    ...c
+  }
+  console.log('es7对象合并', school)
 
 
 
@@ -123,5 +130,22 @@
   }
   Object.assign(obj1, obj2, obj3);
   //name 相同
-  console.log(`assign`,obj1)
+  console.log(`assign`, obj1)
+
+
+  //如果指定的属性存在于对象上，则返回其属性描述符对象
+  console.log(Object.getOwnPropertyDescriptor('123', 'length'))
+  /*
+ configurable: false   是否可配置
+enumerable: false    是否可枚举
+value: 3
+writable: false  是否可修改
+ */
+
+ //Object.keys() 返回值是数组里面放着【里面放着所有可枚举的属性】
+ console.log(`Object.keys`,Object.keys(obj)) //["name", "skill"]
+
+ //Object.values()
+ //Object.enrties()
+
 </script>

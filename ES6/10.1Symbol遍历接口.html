@@ -8,6 +8,9 @@
 
 <body>
   <script type="text/javascript">
+    //和字符串差不多，但是使用symbol的函数得到的数据，每一个完成不同
+    // 可以接受一个参数 ，对symbol的一个描述， 描述一样值也是不同的
+    // 一般会当做对象的属性
     "use strict"
     var obj = {
       a: 1,
@@ -28,6 +31,23 @@
     // var s2 = Symbol('test');
     // console.log(s1 == s2);
     //console.log(typeof s1);
+
+    let sym1 = Symbol('foo')
+    let sym2 = Symbol('foo')
+    let obj2 = {
+      sym1: '123',
+      [sym1]: "2222"
+    }
+    obj2[sym2] = "修改内容"
+    console.log(obj2)
+    //可以转为Boolean
+    console.log(!Symbol('1'))
+    //可以调用tostring方法
+    console.log(Symbol('1').toString())
+    //Symbol.for()如果之前有相同的参数Symbol的值 找到这个值返回，如果没有 就得到 就创建一个新的Symbol值
+    let foo=Symbol.for('1321232') //参数相同值就相同
+    let foo2=Symbol.for('1321232')
+    console.log(foo==foo2)
 
     Object.prototype[Symbol.iterator] = function () {
       var keys = Object.keys(this);

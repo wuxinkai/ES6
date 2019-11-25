@@ -18,7 +18,7 @@
   let add2 = (a, b = 3) => a + b
   console.log(`给默认值和简写方式，`, add2(1, 2));
 
-  //this是window
+  //this是看他的上一级，
   //箭头函数不是使用构造函数
   // 箭头函数都是严格模式
   // 箭头函数不能使用 arguments 
@@ -57,5 +57,7 @@
   }
   fun2(...arr2);
 
-
+//
+let str = '["name":"xiaoming","age":"xiaoming"]'
+let arrs = (new Function(""))()
 </script>

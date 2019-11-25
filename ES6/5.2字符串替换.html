@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let text = 'Hello world, Hello world';
+    let b = text.replace('world', '字符串替换成功') // 找到字符串中的第一个'world',并把它替换为'zhengxiaoya'
+    let c = text.replace(/world/g, '字符串替换成功') // 用正则的方式替换所有内容
+    console.log(b)
+    console.log(c)
+
+    // 替换内容
+    let prean = [{
+            name: '宝马',
+            age: 1
+        },
+        {
+            name: '奔驰',
+            age: 2
+        },
+        {
+            name: '比亚迪',
+            age: 3
+        }, {
+            name: '宾利',
+            age: 4
+        }
+    ]
+    let str = '我的名字:name,我的年龄:age。我的名字:name,我的年龄:age。我的名字:name,我的年龄:age。我的名字:name,我的年龄:age'
+    let arr = str.split("。")
+
+
+    let AAA = arr.map((element, index) => {
+        return element.replace('name', prean[index].name).replace('age', prean[index].age)
+    });
+    console.log(AAA)
+</script>

@@ -24,14 +24,15 @@
   var map = new Map();
 
   //内容作为属性名
+
   map.set(json, '11111');
-  console.log(`Map`, map);
+  console.log(`Map1`, map);
 
   //内容作为属性值
   map.set('22222', json);
-  console.log(`Map`, map);
+  console.log(`Map2`, map);
 
-  //获取
+  //get 获取
   console.log(map.get(json));
   console.log(map.get('22222'));
 
@@ -48,9 +49,32 @@
   //删除全部
   // console.log(map.clear());
 
+  //遍历的方法 ----------------------------------------
 
-  //迭代器按照对象的插入顺序返回[key, value]
+  //forEach 数组变成map 实例
+  let map4 = new Map([[1,'xiaoming'],[2,'lilei'],[3,'hanmeimie'],[4,'xiaohua']])
+
+  map4.forEach((val,key,index)=>{
+    console.log(`forEach`,key,val,index)
+
+  })
+
+  let map3 = new Map()
+  let array = ['111','222','333','444','555']
+  for(let [index,item] of array.entries()){
+    map3.set(index,item)
+  }
+
+  // key 获取属性名
+  for (let key of map.keys()) {
+    console.log(`key`, key)
+  }
+  // values 获取所以属性名
+  for (let val of map.values()) {
+    console.log(`val`, val)
+  }
+  //entries 迭代器按照对象的插入顺序返回[key, value]
   for (var [key, value] of map.entries()) {
-    console.log(`for of`,key, value);
+    console.log(`for of`, key, value);
   }
 </script>
