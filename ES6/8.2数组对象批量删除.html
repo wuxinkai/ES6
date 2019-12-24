@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+let left_arr = [ //总数据
+    {name:'黎明',id:111},
+    {name:'王小二',id:222},
+    {name:'大小二',id:333},
+    {name:'张三',id:444},
+  ]
+  let right_arr = [   //需要删除的内容
+    {name:'黎明',id:111},
+    {name:'大小二',id:333}
+  ]
+right_arr.map(item=>{
+left_arr.splice(left_arr.findIndex(v=>v.id===item.id),1)
+})
+console.log(left_arr)
+</script>

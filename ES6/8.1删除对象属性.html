@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+const form = {
+      id: '011',
+      name: '测试一',
+      description: '测试demo'
+     }
+
+// 目标: 取到删除description属性的对象, 即下文的data
+
+//方法一: 报存id 和name 两个属性
+let data = (({id, name}) =>({id, name}))(form);
+
+console.log(data) // data:{ id: '011', name: '测试一'}
+console.log(form) // form:{ id: '011', name: '测试一', description: '测试demo' }
+
+// 方法二:
+let {description, ...data} = form;
+// data默认接收剩余的属性值, 打印结果同上
+
+
+
+
+</script>

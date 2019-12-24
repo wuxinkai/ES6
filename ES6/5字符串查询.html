@@ -17,7 +17,7 @@
   //通过indexOf索引去查询
   let a = `而且支持中文`
   let b = `ES6还增加了字符串的查找功能，而且支持中文哦，小伙伴是不是很兴奋`
-  console.log(b.indexOf(a) > -1);
+  console.log('indexOf',b.indexOf(a) > -1);
 
   //ES6直接用includes就可以判断，不再返回索引值
   let c = 'includes';
@@ -25,11 +25,11 @@
   let u = '喜欢';
   let d = 'ES6直接用includes就可以判断，不再返回索引值，这样的结果我们更喜欢';
   //判断内容当中 返回值是boolear值
-  console.log(d.includes(c));
+  console.log('includes',d.includes(c));
   //判断开通 返回值是boolear值
-  console.log(d.startsWith(y));
+  console.log('startsWith',d.startsWith(y));
   //判断结尾 返回值是boolear值
-  console.log(d.endsWith(u));
+  console.log('endsWith',d.endsWith(u));
 
   // 复制字符串
   let f = '赋值字符串, ';

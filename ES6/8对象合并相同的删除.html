@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //合并对象相同的被覆盖
+
+    let t1 = {
+        "type": "pie",
+        "tooltip": {},
+        "legend": {},
+        "series": [{
+            "name": "标题",
+            "type": "pie",
+            "radius": ["0%", "70%"]
+        }]
+    }
+    let t2 = {
+        "series": [{
+            "radius": ["10%", "70%"]
+        }]
+    }
+    var obj1 = {}; //存储到对象1上
+
+    Object.assign(obj1, [t1, t2]);
+    console.log(obj1)
+</script>
