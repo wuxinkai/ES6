@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 链表 就像火车，  有个head 就像是火车头 ，火车厢有 item元素和next 指针指向下一个节点
+    function LinkedList() {
+        //内部类
+        function Node(data) {
+            this.data = data //数据
+            this.next = null //指针 指向下一个节点
+
+        }
+
+        //属性
+        this.head = null;
+        this.length = 0 //一共多少项
+
+        // 1 追加方法
+        LinkedList.prototype.append = function (data) {
+            var newNode = new Node(data)
+
+            //判断是否添加的是否是第一个节点
+            if (this.length == 0) { //创建的第一个节点
+                this.head = newNode
+            } else { //创建的不是第一个节点
+                //下面的代码就是找到最后一个节点
+                let current = this.head
+                while (current.next) { //判断是否为空，如果为空就是最后一个，不为空就不是最后一个
+                    current = current.next
+                }
+                //让最后节点的next指向新的节点
+                current.next = newNode
+            }
+            //增加长度
+            this.length += 1
+        }
+
+        //2 tostring方法
+        LinkedList.prototype.toString = function () {
+            //定义变量
+            let current = this.head;
+            let listString = ""
+            //获取每一个节点
+            while (current) { //判断是否为空
+                listString += current.data + ""
+                current = current.next
+            }
+            return listString
+        }
+        //3 插入方法
+        LinkedList.prototype.insert = function (data, position) {
+            //不能小于0 ， 不能大于总长度
+            if (position < 0 || position > this.length) return false
+            //创建newNode
+            var newNode = new Node(data)
+
+            //判断是不是第一个
+            if (position == 0) {
+                newNode.next = this.head //  newNode是新插入的内容，他的next 应该等于，原来的第一个，是head指向的 从head获取第一个
+                this.head = newNode //this.head 指向新插入进来的第一个
+            } else {
+                //如果他们相等逻辑是一样的没必要再写一遍
+
+                var index = 0
+                var current = this.head
+                var previous = null //临时节点 存储要插入的位置的上一个item的信息，
+
+                //只循环到最后一次，才给地下的内容赋值。
+                while (index++ < position) {
+                    previous = current
+                    current = current.next //每次循环 让自己等于自己的下一个，  自己是要插入位置的下一个item
+                }
+
+                //如果找到了就让newNode的next 等于我们 我们找到的这一项
+                newNode.next = current
+                //newNode 是当前要插入的内容 ，previous是上一个节点，要改变原来的指向
+                previous.next = newNode
+
+                this.length += 1
+                return true
+            }
+        }
+        // 4 获取
+        LinkedList.prototype.get = function (position) {
+            // 边界判断 
+            if (position < 0 || position >= this.length) return null
+
+            //获取数据
+            let index = 0
+            let current = this.head;
+            //查找的是当前的下一个
+            while (index++ < position) {
+                current = current.next
+            }
+            return current.data
+        }
+
+        //indexof 返回对应的索引
+        LinkedList.prototype.indexOf = function (data) {
+            //1定义变量
+            let current = this.head;
+            var index = 0;
+            while (current) {
+                if (current.data == data) {
+                    return index
+                }
+                current = current.next
+                index += 1
+            }
+
+            //找到最后 没有找到就是 -1
+            return -1
+        }
+
+        //修改方法
+        LinkedList.prototype.update = function (position, NewData) {
+            let index = 0
+            let current = this.head
+            //不能是0 不能大于总长度
+            if (position < 0 || position >= this.length) return false
+
+            //修改之前先查找到
+            while (index++ < position) {
+                current = current.next
+            }
+            // 将position位置的node的data替换成新的额 NewData
+            current.data = NewData
+            return true
+        }
+        //通过索引删除内容
+        LinkedList.prototype.removeAt = function (position) {
+            if (position < 0 || position >= this.length) return false
+
+            var index = 0;
+            var current = this.head
+            var previous = null //保存前一个用的
+            //判断是否是第一个节点
+            if (position == 0) {
+                this.head = this.head.next
+            } else {
+                while (index++ < position) {
+                    previous = current
+                    current = current.next
+                }
+                //删除当前的 让 上一个的的next指向，当前的next，当前的next就是，下一个
+                previous.next = current.next
+            }
+            //删除索引
+            this.length -= 1
+            return current.data
+        }
+        //通过内容删除
+        LinkedList.prototype.remove = function (data) {
+            //获取索引
+            var position = this.indexOf(data)
+            //通过索引删除内容
+            return this.removeAt(position)
+        }
+
+        //判断是否为空
+        LinkedList.prototype.isEmpty = function () {
+            return this.length == 0
+        }
+
+         //获取长度
+         LinkedList.prototype.size = function () {
+            return this.length
+        }
+    }
+
+    //测试代码
+    let list = new LinkedList()
+
+    list.append('姚明')
+    list.append('乔丹')
+    list.append('科比')
+    list.append('麦迪')
+
+    //测试 插入
+    list.insert('詹姆斯', 3)
+
+    //测试获取
+    console.log(`获取内容get`, list.get(2))
+
+    //测试获取索引
+    console.log(`获取索引`, list.indexOf('科比'))
+
+    //测试update
+    list.update(1, '杜兰特')
+
+    //测试删除 
+    list.removeAt(0) //删除姚明
+
+    //删除测试
+    list.remove('姚明')
+
+    console.log(`是否为空`, list.isEmpty())
+    console.log(`数组长度`, list.size())
+
+
+    console.log(list)
+    console.log(list.toString())
+</script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //数字越小优先级越高，
+
+    function PriortyQueue() {
+        //属性
+        this.items = []
+
+        //内部类
+        function QueueElement(element, priorty) {
+            this.element = element //把当前项保存起来
+            this.priorty = priorty //把当前项的优先级保存起来
+        }
+        //实现插入方法
+        PriortyQueue.prototype.addqueue = function (element, priorty) {
+            // 1 创建QueueElement对象
+            var queueElement = new QueueElement(element, priorty)
+
+            // 插入的三种情况，
+            // 1数组是空的，没法和之前的比较，直接插入就行
+            // 2数组有内容 需要和之前的做对比
+            // 3 要插入的这一项数字过大 插入到最后
+
+            // 判断是否为空
+            if (this.items.length == 0) {
+                this.items.push(queueElement)
+            } else {
+                let added = false //找到了就不用再往下循环了
+
+                //在这里有可能找不到，比我还小的数字，
+                for (var i = 0; i < this.items.length; i++) {
+                    if (queueElement.priorty < this.items[i].priorty) {
+                        this.items.splice(i, 0, queueElement) //插入
+                        added = true
+                        break //停止循环
+                    }
+                }
+
+                if (!added) { //比较到最后依然没有找到比我这个优先级小的，越小排名越靠前
+                    this.items.push(queueElement)
+                }
+            }
+        }
+        //删除第一个内容
+        PriortyQueue.prototype.delqueue = function () {
+            return this.items.shift()
+        }
+        //查看第一个元素
+        PriortyQueue.prototype.front = function () {
+            return this.items[0]
+        }
+        //查看队列是否为空
+        PriortyQueue.prototype.isEmpty = function () {
+            return this.items.length === 0
+        }
+        // 查看队列中元素个数
+        PriortyQueue.prototype.size = function () {
+            return this.items.length
+        }
+        //转为字符串
+        PriortyQueue.prototype.toString = function () {
+            let resultString = ""
+            for (var i = 0; i < this.items.length; i++) {
+                resultString += this.items[i].element + "-"+this.items[i].priorty +" "
+            }
+            return resultString
+        }
+    }
+    let pq = new PriortyQueue()
+
+    pq.addqueue('小米',22)
+    pq.addqueue('华为',24)
+    pq.addqueue('三星',21)
+    pq.addqueue('诺基亚',1000)
+    pq.addqueue('苹果',25)
+    console.log(pq)
+    console.log(pq.toString())
+</script>

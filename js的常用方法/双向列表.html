@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //单项列表只能能从头部遍历到尾部，
+    //双向列表，既可以从头部遍历到尾部，又可以从尾部遍历到头部， 缺点：实现起来相对复杂
+
+
+    function DoubyLinkedList() {
+        //包含的属性
+        this.head = null //头部
+        this.tail = null //尾部 最后一个节点
+        this.length = 0
+
+        //内部类
+        function Node(data) {
+            this.data = data;
+            this.prev = null;
+            this.next = null;
+        }
+
+        // 方法封装
+        //1 添加内容
+        DoubyLinkedList.prototype.append = (data) => {
+            //判断是不是第一个节点
+            var newData = new Node(data)
+            if (this.length == 0) { //是第一个节点
+                this.head = newData
+                this.tail = newData
+            } else { //不是第一个节点
+                newData.prev = this.tail
+                this.tail.next = newData
+                this.tail = newData
+            }
+            //添加让索引
+            this.length += 1
+        }
+        // 2 转为tostring
+        DoubyLinkedList.prototype.toString = function () {
+            return this.backwardString()
+        }
+        // 3  从最后一个节点遍历到第一个节点 ，向前遍历循环 forwardString
+        DoubyLinkedList.prototype.forwardString = function (Symbol = "") {
+            // 先获取最后一个
+            var current = this.tail
+            var resultString = ""
+            while (current) {
+                resultString += current.data + `${Symbol}`
+                current = current.prev //获取的是上一个，循环遍历的也是上一个
+            }
+            return resultString
+        }
+        // 4  从第一个节点遍历到最后一个节点，向后遍历循环 backwardString
+        DoubyLinkedList.prototype.backwardString = function (Symbol = "") {
+            var current = this.head;
+            var resultString = ""
+            while (current) {
+                resultString += current.data + `${Symbol}`
+                current = current.next //获取的是下一个，循环遍历的也是下一个
+            }
+            return resultString
+        }
+
+        //双向插入内容
+        DoubyLinkedList.prototype.insert = function (position, data) {
+            //越界判断
+            if (position < 0 || position > this.length) return false
+            //根据data创建新的节点
+            var newData = new Node(data)
+
+            //判断是否为空，如果为空， 第一个和最后一个都是新创建的这一项
+            if (this.length == 0) {
+                this.head = newData
+                this.tail = newData
+            } else { //说明里面已经有节点了
+                if (position == 0) { //判断插入的地方是第一个位置
+                    this.head.prev = newData; //this.head是上一个， 他的指向插入的这个
+                    newData.next = this.head //新来的这个下一个， 指向 被移动的这个
+                    this.head = newData // 插入的前一个指向 刚进来的这个
+                } else if (position === this.length) { //判断插入的地方是最后一个位置
+                    newData.prev = this.tail; // newData是插入进来的，  this.tail 上一个的指针
+                    this.tail.next = newData //让上一个的item的 下一个指针指向，当前项
+                    this.tail = newData //让最后一项的指针指向出入进来的这个
+                } else { //插入到中间，
+                    var current = this.head;
+                    var index = 0;
+                    while (index++ < position) { //遍历循环不断去查找
+                        current = current.next
+                    }
+                    newData.next = current //插入(newData) 的向下指针，指向我们查找到的这一项
+                    newData.prev = current.prev //newData.prev 指向原来， 指向current的
+                    current.prev.next = newData // current.prev原本是指向最后一个的，他的prev是第四个，第四个的下一个就是我们插入的这项
+                    current.prev = newData // current指向 我们新插入的
+                }
+
+            }
+            this.length += 1
+            return true
+        }
+
+        DoubyLinkedList.prototype.get = (position) => {
+            //越界判断
+            if (position < 0 || position >= this.length) return null
+            //获取元素
+            var current = this.head
+            var index = 0;
+            while (index++ < position) {
+                current = current.next
+            }
+            return current.data
+        }
+    }
+
+    let douby = new DoubyLinkedList()
+
+    douby.append('第一个')
+    douby.append('第二个')
+    douby.append('第三个')
+    douby.append('第四个')
+    douby.append('最后一个')
+    douby.insert(4, '我是插入进来的')
+    console.log(douby)
+
+    //转成字符串
+    console.log(douby.toString())
+    console.log(`获取的是`,douby.get(3))
+    //测试 从前到后
+    console.log(douby.backwardString(' , '))
+    //从后到前
+    console.log(douby.forwardString(' ~ '))
+</script>

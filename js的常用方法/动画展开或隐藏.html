@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        width: 200px;
+        height: 300px;
+        margin: 100px auto;
+        background: red;
+    }
+
+    button {
+        margin: 20px 0 0 50px;
+
+        height: 40px;
+        background: pink;
+        color: #000;
+    }
+</style>
+
+<body>
+    <button onclick="show()">展开按钮</button>
+    <button onclick="hide()">关闭按钮</button>
+    <div id="div1" style="width:80px;height:80px;background-color:green;opacity: 1;"></div>
+</body>
+
+</html>
+<script>
+    function fadeIn(element, speed) {
+        if (element.style.display !== 'none') return
+        var speed = speed || 30;
+        var num = 0;
+        var st = setInterval(function () {
+            num++;
+            element.style.opacity = num / 10;
+            element.style.display = 'block'
+            if (num >= 10) {
+                clearInterval(st);
+            }
+        }, speed);
+    }
+
+    function show() {
+        fadeIn(div1, 30); //第二个参数是设置speed,默认为30，可自由修改
+    }
+
+
+
+    function fadeOut(element) {
+        if (element.style.display == 'none') return
+        var speed = speed || 30;
+        var num = 10;
+        var st = setInterval(function () {
+            num--;
+            element.style.opacity = num / 10;
+            if (num <= 0) {
+                element.style.display = 'none';
+                clearInterval(st);
+            }
+        }, speed);
+    }
+
+    function hide() {
+        fadeOut(div1, 100);
+    }
+</script>

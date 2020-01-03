@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    var arr = [0, 1, 2, 3];
+
+    var arrdelete=[1,3];   //要删除arr里面的下标是1 和 3
+
+    function justArr() {
+        for (var i = 0; i < arrdelete.length; i++) {
+            let item = arrdelete[i]
+            arr.splice(item,1)
+            console.log('错误的结果，3没有被删除',arr)
+        }
+    }
+    justArr()
+
+    //从后向前删除，  要保证 删除的下标是从小到大排列的
+    function returnArr() {
+        for (var i = arrdelete.length - 1; i >= 0; i--) {
+            let item = arrdelete[i];
+            arr.splice(item,1)
+            console.log('正确的结果',arr)
+        }
+    }
+    returnArr()
+</script>
