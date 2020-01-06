@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //集合特点： 无需  不可重复
+    //  用对象实现
+    function Set() {
+        //属性
+        this.items = {}
+        // 方法  //添加
+        Set.prototype.add = function (value) {
+            //判断是否包含元素
+            if (this.has(value)) {
+                return false
+            }
+            this.items[value] = value
+            return true
+        }
+        // 删除 
+        Set.prototype.remove = function (value) {
+            // 是否包含
+            if (!this.has(value)) {
+                return false
+            }
+            delete this.items[value]
+            return true
+        }
+        // 是否包含
+        Set.prototype.has = function (value) {
+            return this.items.hasOwnProperty(value)
+        }
+        //  清空 
+        Set.prototype.clear = function () {
+            this.items = {}
+        }
+        // 元素个数
+        Set.prototype.size = function () {
+            return Object.keys(this.items).length
+        }
+        //  所有元素
+        Set.prototype.values = function () {
+            return Object.keys(this.items)
+        }
+    }
+    var set = new Set()
+    set.add('111')
+    set.add('22')
+    set.add('333')
+    set.remove('333')
+    // set.clear()
+    console.log(set.values())
+    console.log(set.size())
+</script>

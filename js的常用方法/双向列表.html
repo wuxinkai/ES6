@@ -73,7 +73,7 @@
             return resultString
         }
 
-        //双向插入内容
+        //5 双向插入内容
         DoubyLinkedList.prototype.insert = function (position, data) {
             //越界判断
             if (position < 0 || position > this.length) return false
@@ -121,6 +121,90 @@
             }
             return current.data
         }
+        //6  indexof 传一个元素根据元素，返回当前索引。如果没有索引返回 -1
+        DoubyLinkedList.prototype.indexOf = (data) => {
+            var current = this.head;
+            var index = 0
+            while (current) {
+                if (current.data === data) {
+                    return index
+                }
+                current = current.next
+                index += 1
+            }
+            return -1
+        }
+        //7 更新方法
+        DoubyLinkedList.prototype.updata = (position, newData) => {
+            //越界判断
+            if (position < 0 || position >= this.length) return false
+            let current = this.head;
+            let index = 0
+            //查找节点 找到替换
+            if (index++ === position) {
+                current = current.next
+            }
+
+            //找到我们需要的     
+            current.data = newData
+            return true
+        }
+
+        //8  删除
+        DoubyLinkedList.prototype.removeAt = (position) => {
+            //越界判断
+            if (position < 0 || this.length <= position) return null
+            //2 判断是否只有一个节点 ,有三种情况，一种是删除第一个， 二种是删除末尾，三是删除中间
+
+            let current = this.head
+
+            if (position == 1) {
+                this.head = null
+                this.tail = null
+            } else {
+                //判断删除的是否是第一个节点
+                if (position === 0) {
+                    this.head.next.prev = null; //让当前的 要删除的下一个的，指针不在指向 删除的这个元素
+                    this.head = this.head.next //
+                } else if (position === this.length - 1) { //这是最后一个节点
+                    current = this.tail
+                    this.tail.next = null
+                    this.tail = this.tail.prev //让自己等于自己的前一个节点。 因为最后一个被删除了
+                } else {
+                    var index = 0;
+
+                    while (index++ < position) {
+                        current = current.next
+                    }
+                    current.prev.next = current.next
+                    current.next.prev = current.prev
+                }
+            }
+            this.length -= 1
+            return current.data
+        }
+
+        //通过内容删除
+        DoubyLinkedList.prototype.remove = (data) => {
+            var index = this.indexOf(data);
+            return this.removeAt(index)
+        }
+        //判断是否为空
+        DoubyLinkedList.prototype.isEmpty = () => {
+            return this.length == 0
+        }
+        //判断长度
+        DoubyLinkedList.prototype.size = () => {
+            return this.length
+        }
+        //获取第一个元素
+        DoubyLinkedList.prototype.getHead = () => {
+            return this.head.data
+        }
+        //获取最后元素
+        DoubyLinkedList.prototype.getTail = () => {
+            return this.tail.data
+        }
     }
 
     let douby = new DoubyLinkedList()
@@ -131,13 +215,18 @@
     douby.append('第四个')
     douby.append('最后一个')
     douby.insert(4, '我是插入进来的')
+    douby.updata(1, '被更新后的第一个')
+    douby.removeAt(2) //第三个被删除
+    douby.remove('第四个') //第四个被删除
     console.log(douby)
 
     //转成字符串
     console.log(douby.toString())
-    console.log(`获取的是`,douby.get(3))
+    console.log(`获取的是`, douby.get(3))
     //测试 从前到后
     console.log(douby.backwardString(' , '))
     //从后到前
     console.log(douby.forwardString(' ~ '))
+    //
+    console.log(`获取索引`, douby.indexOf('第二个'))
 </script>

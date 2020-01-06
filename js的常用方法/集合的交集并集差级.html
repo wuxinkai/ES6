@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function Set() {
+        //属性
+        this.items = {}
+        // 方法  //添加
+        Set.prototype.add = (value) => {
+            //判断是否包含元素
+            if (this.has(value)) {
+                return false
+            }
+            this.items[value] = value
+            return true
+        }
+        // 删除 
+        Set.prototype.remove = function (value) {
+            // 是否包含
+            if (!this.has(value)) {
+                return false
+            }
+            delete this.items[value]
+            return true
+        }
+        // 是否包含
+        Set.prototype.has = function (value) {
+            return this.items.hasOwnProperty(value)
+        }
+        //  清空 
+        Set.prototype.clear = function () {
+            this.items = {}
+        }
+        // 元素个数
+        Set.prototype.size = function () {
+            return Object.keys(this.items).length
+        }
+        //  所有元素
+        Set.prototype.values = function () {
+            return Object.keys(this.items)
+        }
+
+        // 并集 ：包含两个元素的新集合，既包含a里所有的元素，也包含b里所有的元素
+        // 先把A元素添加到一个集合中，再添加B元素，判断B中有没有和A重复的如果有重复的就不在往 集合中添加
+
+        Set.prototype.union = function (otherSet) {
+            // this 集合对象A
+            // otherSet 集合B
+            //1 创建新的集合
+            var unionSet = new Set()
+            var values = this.values()
+            // 2将A集合中所有的元素添加到集合中
+            for (var i = 0; i < values.length; i++) {
+                unionSet.add(values[i])
+            }
+            //3 取出B集合的内容 放入的A集合 
+            values = otherSet.values()
+            for (var i = 0; i < values.length; i++) {
+                unionSet.add(values[i])
+            }
+            return unionSet
+        }
+
+
+        // 交集， 两个集合重叠的部分 ，存储A所有的元素，遍历B元素 和A相同的就是并集
+        Set.prototype.intersection = function (otherSet) { // otherSet是另一个集合
+            var intersection = new Set();
+            var setFvalues = this.values();
+
+            //第一个集合的存储
+            for (i = 0; i < setFvalues.length; i++) {
+                var item = setFvalues[i]
+                if (otherSet.has(item)) {
+                    intersection.add(item)
+                }
+            }
+            return intersection
+        }
+
+        // 差级：  如果包含在第一个元素就不能再包含在第二个元素的集合
+        Set.prototype.difference = function (otherSet) {
+            let differ = new Set();
+            let values = this.values()
+            for (var i = 0; i < values.length; i++) {
+                let item = values[i]
+                if (!otherSet.has(item)) {
+                    differ.add(item)
+                }
+            }
+
+            return differ
+        }
+
+        // 子集：  一个集合嵌套另一个集合。 先存储子元素到新的集合。判读父元素的每一项是不是子元素中都存在。如果有一项不存在就返回false
+        Set.prototype.subset = function (otherSet) {
+            let subset = new Set();
+            let values = this.values()
+            for (var i = 0; i < values.length; i++) {
+                let item = values[i]
+                if (!otherSet.has(item)) {
+                    return false
+                }
+            }
+            return true
+        }
+
+
+    }
+    var setA = new Set()
+
+    //创建集合添加元素
+    setA.add('111')
+    setA.add('222')
+    setA.add('333')
+
+    var setB = new Set()
+    setB.add('AAA')
+    setB.add('BBB')
+    setB.add('333')
+    //求并集  相同的被删除
+    let un = setA.union(setB)
+    console.log(un.values())
+
+
+
+    //并集测试
+    var setF = new Set()
+    setF.add('AAA')
+    setF.add('222')
+    setF.add('CCC')
+    var setD = new Set()
+    setD.add('CCC')
+    setD.add('222')
+    setD.add('666')
+
+    let inter = setF.intersection(setD)
+    console.log(inter.values())
+
+
+    //差集测试 取A集合和 B集合不同的地方
+    var setP = new Set()
+    setP.add('UUU')
+    setP.add('SSS')
+    setP.add('TTT')
+    setP.add('RRR')
+    var setQ = new Set()
+    setQ.add('TTT')
+    setQ.add('RRR')
+    setQ.add('999')
+    setQ.add('678')
+    let differ = setP.difference(setQ)
+    console.log(differ.values())
+
+    // 子集：  一个集合嵌套另一个集合
+    //父元素
+    var setY = new Set()
+    setY.add('888')
+    setY.add('000')
+    setY.add('444')
+    //子元素
+    var setN = new Set()
+    setN.add('888')
+    setN.add('000')
+    setN.add('444')
+
+    let sub = setY.subset(setN)
+    console.log(`判读是否是子集`, sub)
+</script>
