@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    class Db {
+        static getInfo() {
+            //声明一次就不再声明
+            if (!Db.instance) {
+                Db.instance = new Db()
+            }
+            return Db.instance
+        }
+        constructor() {
+            this.connect()
+        }
+        connect() {
+            console.log('1') //结果只执行一次
+        }
+        find() {
+            console.log('q')
+        }
+    }
+
+    //声明三个实例方法就执行三次 ，但我们要求声明三次，只执行一次  利用静态方法
+    let datas1 = Db.getInfo()
+    let datas2 = Db.getInfo()
+    let datas3 = Db.getInfo()
+</script>
