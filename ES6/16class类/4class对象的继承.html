@@ -1,97 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <style>
-    </style>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <style></style>
     <script>
- //se5继承
-        function Person(name,age){
-          this.name =name;
-          this.age  =age;
-          Person.prototype.showName =function(){
-            return this.name
-          }
-          Person.prototype.showAge = function(){
-            return this.age
-          }
-        }
-        //apply继承
-       function Workey(name,age){
-         //调用一个对象的一个方法，用另一个对象替换当前对象
-         Person.apply(this,arguments)
-       }
-       //原型继承
-       Worker.prototype=new Person();
+      //se5继承
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        Person.prototype.showName = function () {
+          return this.name;
+        };
+        Person.prototype.showAge = function () {
+          return this.age;
+        };
+      }
+      //apply继承
+      function Workey(name, age) {
+        //调用一个对象的一个方法，用另一个对象替换当前对象
+        Person.apply(this, arguments);
+      }
+      //原型继承
+      Worker.prototype = new Person();
 
-       let p1 = new Person('科比',34)
-       let p2 = new Person('詹姆斯',24)
-       let  w1=new Person('姚明',40);
+      let p1 = new Person("科比", 34);
+      let p2 = new Person("詹姆斯", 24);
+      let w1 = new Person("姚明", 40);
 
-        console.log(p1.showName())
-        console.log(p2.showName())
-        console.log(w1.showName())
-
-//se6继承
-       class Person2{
-         constructor(name='梅西',age=32){
-           this.name =name
-           this.age =age
-           this.jos = '继承应用'
-         }
-         showAge(){
-           return this.age
-         }
-         showName(){
-           return this.name
-         }
-       }
+      console.log(p1.showName());
+      console.log(p2.showName());
+      console.log(w1.showName());
 
       //se6继承
-      class Worker2 extends Person2{
-        constructor(name,age,jos='不买扫地机'){
-          super(name,age); //不覆盖上面内容
-          this.jos2 =jos
+      class Person2 {
+        constructor(name = "梅西", age = 32) {
+          this.name = name;
+          this.age = age;
+          this.jos = "继承应用";
         }
-        showJos(){
-          return this.jos
+        showAge() {
+          return this.age;
+        }
+        showName() {
+          return this.name;
         }
       }
-       
 
-       var p3=new Person2();
-       var p4 = new Person2('c罗',34)
-       var w2=new Worker2('内马尔',26); //继承
+      //se6继承
+      // Worker2 继承了Person2的方法和属性
+      class Worker2 extends Person2 {
+        constructor(name, age, jos = "不买扫地机") {
+          super(name, age); //不覆盖上面内容
+          this.jos2 = jos;
+        }
+        showJos() {
+          return this.jos;
+        }
+      }
 
-       console.log(p3.showAge(),p3.showName())
-       console.log(p4.showAge(),p4.showName())
-       console.log(w2.showAge(),w2.showName(),w2.showJos(),w2.jos2)
+      var p3 = new Person2();
+      var p4 = new Person2("c罗", 34);
+      var w2 = new Worker2("内马尔", 26); //继承
 
+      console.log(p3.showAge(), p3.showName());
+      console.log(p4.showAge(), p4.showName());
+      console.log(w2.showAge(), w2.showName(), w2.showJos(), w2.jos2);
     </script>
-</head>
-<body>
-</body>
+  </head>
+  <body></body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

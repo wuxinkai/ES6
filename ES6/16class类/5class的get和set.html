@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  let _age = 4;
+  class Animal {
+    constructor(type) {
+      this.type = type;
+    }
+    //设置只读属性 无法修改
+    get age() {
+      return _age;
+    }
+    set age(val) {
+      if (val < 7 && val > 3) {
+        _age = val;
+      } else {
+        _age = null;
+      }
+    }
+    eat() {
+      return 12345;
+    }
+    //类的静态方法
+    static walk(){
+      console.log('类的静态方法')
+    }
+  }
+  let god = new Animal("dog");
+  console.log(god.eat());
+
+  god.age = 9; //只对设置属性起作用
+  console.log("get不能加空号", god.age); //只读得不能被修改
+  console.log("6666", god.age); //设置的可以被修改
+</script>

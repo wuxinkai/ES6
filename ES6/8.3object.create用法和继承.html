@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //第一个属性必填  是新建对象得原型属性
+  // 第二个选填  是新创建的实例对象上的属性
+
+  let xxx = Object.create(
+    {
+      //原型上的
+      a: "投币",
+      b: "点赞",
+      c: "收藏",
+    },
+    {
+      //实例上的
+      c11: {
+        value: "1111",
+      },
+      c22: {
+        value: "222",
+      },
+    }
+  );
+  // console.log(xxx); // 内容在__proto__里面了
+
+
+
+  // 继承
+  var parent = {
+    a: 1111,
+    b: 2222,
+    c: function (n) {
+      return `返回的是什么${n}`;
+    },
+  };
+
+  //子方法执行
+  var _obj = Object.create(parent, {
+    txt: {
+      value: "继承上面得方法",
+    },
+  });
+  console.log(_obj)
+  console.log(_obj.c("666"), _obj.a);
+</script>

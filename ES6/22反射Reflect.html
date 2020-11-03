@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //Object上有得方法Reflect上都有
+  /*
+  Reflect.get(user2, "a1") //读取值
+  Reflect.has(user2, "a1") //判断有没有
+  Reflect.set(user2, "a6",77777) //新增或者替换
+ Reflect.deleteProperty(user2, "a2") //删除 
+  Reflect.isExtensible(user2) //对象是否可以扩展
+  */
+  console.log(Math.floor.apply(null, [3, 74])); //向下取整
+  console.log(Reflect.apply(Math.floor, null, [4, 75]));
+
+  //反射机制作用
+
+  //大于100 向下取整
+  //小于100向上取整
+  let price = 115.9;
+  if (price > 100) {
+    price = Math.floor.apply(null, [price]);
+  } else {
+    price = Math.ceil.apply(null, [price]);
+  }
+  console.log(price);
+
+  //se6写法
+  console.log(
+    `es6`,
+    Reflect.apply(price > 100 ? Math.floor : Math.ceil, null, [price])
+  );
+
+  // 利用反射实现类   /时间戳
+  let d = Reflect.construct(Date, []);
+  console.log(`时间戳`, d.getTime());
+  console.log(`d是不是Data原型上的类`, d instanceof Date);
+
+  // 给对象增加属性
+  const student = {};
+  let s = Object.defineProperty(student, "name", { value: "Name21" });
+  console.log(`Object`, student);
+  let n = Reflect.defineProperty(student, "name2", { value: "Name2444" });
+  console.log(`Reflect`, student);
+  // Object 和 Reflect 的返回值不一样
+  console.log(`object`, s); // 返回的是一个对象
+  console.log(`Reflct`, n); //
+
+  //Object上有得方法Reflect上都有
+  //验证对象有没有这个属性
+  let user2 = { a1: "小明", a2: 18, a3: 67, a4: "444" };
+  Reflect.set(user2, "a6", 77777);
+  console.log(Reflect.has(user2, "a1")); //判断有没有
+  console.log(Reflect.get(user2, "a1")); //读取值
+  console.log(Reflect.deleteProperty(user2, "a2"), user2); //删除值
+  user2.a5 = "55555";
+  Object.freeze(user2); //冻结不可扩展  加上这个就不能扩展
+  user2.a6 = "66666"; //没有加进来
+  console.log(user2);
+  console.log(`上面冻结了`, Reflect.isExtensible(user2)); //对象是否可以扩展
+
+  //获取去自身（私有）属性，不要原型上的
+  console.log(`获取私有属性`, Reflect.ownKeys(user2));
+  //数组返回值 多了个length
+  console.log(`数组返回值`, Reflect.ownKeys([1, 2, 3]));
+
+  //
+  const arr = ["dock", "dock", "dock"];
+  Reflect.set(arr, 2, "goose");
+  console.log(`替换索引位2的`, arr);
+
+  //修改数组的原型对象
+  console.log(Reflect.getPrototypeOf(arr)); //获取原型对象
+
+  //修改原型对象
+  Reflect.setPrototypeOf(arr, String.prototype);
+  console.log(Reflect.getPrototypeOf(arr));
+  // arr.sort() //用不了原型上没有这个方法了
+</script>

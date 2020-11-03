@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+function * loop(){
+  for(let i=0;i<5;i++){
+    yield console.log(i)
+  }
+}
+let l=  loop()
+l.next()
+l.next()
+console.log()
+
+//应用场景 可以是抽奖 用
+  
+</script>

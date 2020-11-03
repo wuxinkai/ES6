@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //项目常用 用定时器请求 等待数据返回
+  {
+    let ajax = function* () {
+      yield new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve({ code: 1 });
+        }, 3200);
+      });
+    };
+
+    let pull = function () {
+      let generator = ajax();
+      let step = generator.next();
+      step.value.then(function (d) {
+        if (d.code != 0) {
+          setTimeout(function () {
+            console.log("wait");
+            pull();
+          }, 1000);
+        } else {
+          console.log(d);
+        }
+      });
+    };
+
+    pull();
+  }
+</script>

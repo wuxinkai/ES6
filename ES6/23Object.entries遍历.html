@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //让不支持遍历的数据解构可遍历
+
+  //场景  一个出版社要维护很多作者：有情感类  武侠类  科幻类
+  let authors = {
+    allAuthors: {
+      fiction: ["Agla", "Skks", "LP"],
+      scienceFiction: ["Neal", "Arthru", "Ribert"],
+      fantasy: ["J.R.Tole", "J.M.R", "Terry P.K"],
+    },
+    Addres: [],
+  };
+
+  let r = []; //临时数组把所有作者都加到这里
+
+  // for(let [k,v] of Object.entries(authors.allAuthors)){
+  //   console.log(k,v)
+  //    r =r.concat(v) //三个数组拼一起
+  // }
+  // console.log(r)
+  // Object.entries 方法返回一个给定对象自身可枚举属性的键值对数组
+
+  // authors[Symbol.iterator] 自定义遍历器必须这样写 , authors[Symbol.iterator]这种叫可迭代协议 
+
+  authors[Symbol.iterator] = function () {
+    let allAuthors = this.allAuthors; //获取 要遍历的对象
+    let keys = Reflect.ownKeys(allAuthors); //拿到所有的 ，fiction， scienceFiction， fantasy
+    let values = []; //存放获取得数据
+    return {
+      next() {
+        if (!values.length) {
+          //通过指针来进行操作
+          if (keys.length) {
+            //判断，fiction 的长度是不是大于0
+            values = allAuthors[keys[0]]; // ["Agla", "Skks", "LP"] 就是这样
+            keys.shift(); //每次遍历完都把当前遍历的删除 ，
+          }
+        }
+
+        return {
+          done: !values.length, //是否遍历完 values.length等于0我就不遍历了
+          value: values.shift(), //遍历的值   去完后就删除
+        };
+      },
+    };
+  };
+
+  let t = [];
+  for (let v of authors) {
+    t.push(v);
+  }
+  console.log('数据',t);
+</script>

@@ -10,10 +10,13 @@
 
     </style>
     <script>
-        var arr=[{title:'abc', href:'kkkk', img:"img1"}];
-        var [{title,href,img}]=arr;
+        function getPos(){
+            return {left:100, stop:1000};
+        }
 
-        console.log(title,href,img);
+        var {left,stop}=getPos();
+
+        console.log(left, stop);
     </script>
 </head>
 <body>

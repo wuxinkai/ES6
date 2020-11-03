@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //模块太多不想一个一个导出 用星号
+  // import { Text, Animal } from "./9导出所有内容用星号.js";
+  // let text = new Text();
+  // let animal = new Animal();
+  //内容
+  // console.log(Text.id, animal.name);
+
+
+  //简单写法
+  import * as Mod from "./9导出所有内容用星号.js";
+  let text = new Mod.Text();
+  let animal = new Mod.Animal();
+  console.log(Text.id, animal.name);
+
+</script>

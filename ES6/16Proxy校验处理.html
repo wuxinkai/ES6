@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  let o = {
+    name: "xiaoming",
+    price: 190,
+  };
+
+
+  //价格验证
+  let vallidator = (target, key, value) => {
+    if (Reflect.has(target, key)) {
+      if (key == "price") {
+        if (value > 300) {
+          return false;
+        } else {
+          target[key] = value;
+        }
+      } else {
+        target[key] = value;
+      }
+    } else {
+      return false;
+    }
+  };
+  let d = new Proxy(o, {
+    get(target, key) {
+      return target[key] || ""; //没有返回空
+    },
+    set:vallidator
+  });
+  
+  // d.price=280 //可以修改
+  d.price = 320; //可以修改  还是190没有被修改
+  d.name = "hanmeimei";
+  d.age = 600; //没有得属性是无法加入都是
+  console.log("是个空", d.age);
+  console.log(d.price, d.name);
+</script>

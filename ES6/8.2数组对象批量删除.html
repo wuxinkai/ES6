@@ -20,10 +20,13 @@ let left_arr = [ //总数据
   ]
   let right_arr = [   //需要删除的内容
     {name:'黎明',id:111},
-    {name:'大小二',id:333}
+    {name:'大小二',id:333},
+    {name:'大小三',id:777}
   ]
 right_arr.map(item=>{
-left_arr.splice(left_arr.findIndex(v=>v.id===item.id),1)
+  if(left_arr.findIndex(v=>v.id===item.id)!=-1){
+    left_arr.splice(left_arr.findIndex(v=>v.id===item.id),1)
+  }
 })
 console.log(left_arr)
 </script>

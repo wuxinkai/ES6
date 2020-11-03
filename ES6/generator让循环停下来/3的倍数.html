@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  function* count(x = 1) {
+    while (1) {
+      if (x % 3 === 0) {
+        yield x;
+      }
+      x++;
+    }
+  }
+
+  let num = count();
+  console.log(num.next().value);
+  console.log(num.next().value);
+  console.log(num.next().value);
+  console.log(num.next().value);
+  console.log(num.next().value);
+  console.log(num.next().value);
+  console.log(num.next().value);
+  console.log(num.next().value);
+  console.log(num.next().value);
+</script>

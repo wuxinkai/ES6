@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  class Conponent{
+    constructor(){
+      this.proxy = new Proxy({
+        id:Math.random().toString(36).slice(-8)
+      },{})
+    }
+    get id(){
+      return this.proxy.id
+    }
+  }
+  let con = new Conponent()
+  let con2 = new Conponent()
+  for(let i=0;i<10;i++){
+    console.log(con.id,con2.id)
+  }
+  con.id ='abl' //不会被修改
+</script>

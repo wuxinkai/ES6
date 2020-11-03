@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-
-<body>
-
-</body>
-
+  <body></body>
 </html>
 <script>
-  let a = ["A", "B", "C"]
-  var b = new Set(["D", "E", "F"])
-  let c = new Map([
-    [1, 'X'],
-    [2, 'Y'],
-    [3, 'Z']
-  ])
+  //  set每个元素可以是任意值
+  // Map 的key可以是任意值 
+  //set 存储数据必须是唯一
+  // 存储得是可便利得对象不一定是数组
+  let a = ["A", "B", "C"];
+  var A1 = new Set();
 
-  let d = ["A", "B", "C"]
-  d.name = '新增'
+  var b = new Set(["D", "E", "F"]);
+
+  let d = ["A", "B", "C"];
+  d.name = "新增";
+
+  //存储 存储相同不会被存储里面
+  A1.add(111).add(222).add(333).add(222);
+  console.log("存储", A1);
+
+  //删除数据
+  A1.delete(333);
+  console.log(`删除`, A1);
+  //查询有没有这个数据
+  A1.has(333);
+  console.log(`查询`, A1.has(333), A1.has(222));
+  //转成数组
+  console.log("Set转成数组", [...b]);
+  console.log("Set转成数组", Array.from(b));
 
   //（1）获取的是值
   // for(let value of a){
@@ -35,7 +46,6 @@
   //   console.log(x);// 0 1 2
   // }
 
-
   //（2）获取每一个值
   for (let x of b) {
     console.log(x); // D,E,F
@@ -45,6 +55,11 @@
     console.log(x);
   }
 
+  let c = new Map([
+    [1, "X"],
+    [2, "Y"],
+    [3, "Z"],
+  ]);
   //（3）遍历map集合
   //可以拿到值，也可以拿到属性名
   for (let x of c) {
@@ -65,8 +80,7 @@
     console.log(value); // A, B, C ,name
   }
 
-
-
-  let setList = new Set(['星期一', '星期二', '星期三', '星期三'])
-  console.log(`new Set去重`,setList);
+  let setList = new Set(["星期一", "星期二", "星期三", "星期三"]);
+  console.log(`new Set去重`, setList);
+  console.log(`new Set去重 Array.from`, Array.from(setList));
 </script>

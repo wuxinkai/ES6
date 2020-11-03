@@ -52,7 +52,7 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	console.log(user);
+
 
 	// import user1 from "user.js"
 	// import {name1 as name,name2,name3,name4} from "./user.js";

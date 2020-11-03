@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <style></style>
+    
+  </head>
+  <body></body>
+</html>
+<script>
+      //generator 函数，就是一个状态机   函数前面有个星号* ，函数内部有yield属性
+        function* show(){
+            yield 'Hello';
+            yield 'World';
+            yield 'Es6';
+        }
+        var res=show(); //返回值
+        console.log(res.next()); //{value:'Hello', done:false}  done是没有遍历完
+        console.log(res.next()); //{value:'World', done:false}
+        console.log(res.next()); //{value:'Es5', done:false}
+        console.log(res.next()); //{value:'undefined', done:true}
+        //每次返回 一个value和done的结果
+        //value 每次yield的面值
+        //done是一个布尔值 代表是否遍历结束
+
+        //yield 没有返回值
+
+        //next()可以带参数
+        function* fn(){
+            for(var i=0; true; i++){
+                var a= yield i; //执行遇到 yield 就会停下来， 
+                if(a){i=-1} //第二次执行才会执行if语句
+            }
+        }
+        var d=fn();
+        console.log(d.next());
+        console.log(d.next());
+        //next(true) 给上一个yield的值
+        console.log(d.next(true));
+        console.log(d.next());
+
+
+
+</script>

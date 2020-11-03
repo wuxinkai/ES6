@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  let authors = {
+    allAuthors: {
+      fiction: ["Agla", "Skks", "LP"],
+      scienceFiction: ["Neal", "Arthru", "Ribert"],
+      fantasy: ["J.R.Tole", "J.M.R", "Terry P.K"],
+    },
+  };
+
+  authors[Symbol.iterator] = function* () {
+    let allAuthors = this.allAuthors;
+    let keys = Reflect.ownKeys(allAuthors);
+    let values = [];
+    while (1) { //无线循环
+      if (!values.length) {  //判断 数组是空得 取反
+        if (keys.length) { //判断我们的数据要遍历的数据不是空得
+          values = allAuthors[keys[0]]; //拿到第一个（fiction）进行遍历
+          keys.shift(); //遍历完成删除（fiction）
+          yield values.shift(); //遍历完成删除每一项 （"Agla", "Skks", "LP"）
+        } else {
+          return false;
+        }
+      } else {
+        yield values.shift();
+      }
+    }
+  };
+
+  let r = [];
+  for (let v of authors) {
+    r.push(v);
+  }
+  console.log(r)
+</script>
