@@ -11,7 +11,7 @@
   //every   "every 只有所有的是true才是true"
   //some    some 只要有一个正确就是true
 
-  //过滤 数组对象 --------------------------------------------------
+  //过滤 数组对象 -------------------------------------------------- 删除单个
   // arrData.filter(({ id }) => id !== 4);   let arrData = [ { id: 1, value: "1",}, { id: 2, value: "2", }]    通过花括号过滤数组对象  数据量大消耗性能
 
   // 删除解构赋值 对象
@@ -22,7 +22,7 @@
   // };
   // let { description, ...data } = form;
 
-  // 删除数组对象 -----------------------------------------
+  // （数组对象）删除数组对象 -----------------------------------------  删除对象
   // let left_arr = [
   //   //总数据
   //   { name: "黎明", id: 111 },
@@ -45,8 +45,6 @@
   //   }
   // });
 
-
-
   //验证对象有没有这个属性  -----------------------------------------
   // let user2 = { a1: "小明", a2: 18, a3: 67, a4: "444" };
   // console.log(Reflect.has(user2, "a1")); //判断有没有
@@ -58,15 +56,24 @@
   // console.log(user2);
   // console.log(`上面冻结了`, Reflect.isExtensible(user2)); //对象是否可以扩展
 
+  //（对象）判断对象是否为空 --------------------------------------
+  // const a = {
+  //   text: 123,
+  // };
+  // const b = {};
+  // console.log(`判断对象是否为空`, Object.keys(a).length == 0);
+  // console.log(`判断对象是否为空`, Object.keys(b).length == 0);
 
+  //判断对象中有没有这个属性  --------------------------------------
+  // console.log(`判断对象是否有这个属性`, a.hasOwnProperty("text"));
+  // console.log(`判断有没有这个属性`,Reflect.has(res.data.appdata, "list"))
 
   //获取原型对象上有那些方法  -----------------------------------------
   // let d = new Date();
   // console.log(Reflect.getPrototypeOf(d));
 
-  
   // 长轮询 每3秒请求一次 后台接口     -----------------------------------------
-   //项目常用 用定时器请求 等待数据返回
+  //项目常用 用定时器请求 等待数据返回
   //  {
   //   let ajax = function* () {
   //     yield new Promise(function (resolve, reject) {
@@ -92,7 +99,59 @@
   //   };
   //   pull();
   // }
-   
-  
 
+  // 1（ 数组对象）判断是否存在 数组对象中  ------------- 查询
+
+  // let arrAllData = [
+  //   {
+  //     id: 1,
+  //     value: "1",
+  //   },
+  //   {
+  //     id: 2,
+  //     value: "2",
+  //   },
+  //   {
+  //     id: 3,
+  //     value: "3",
+  //   },
+  //   {
+  //     id: 4,
+  //     value: "5",
+  //   },
+  //   {
+  //     id: 5,
+  //     value: "6",
+  //   },
+  //   {
+  //     id: 6,
+  //     value: "7",
+  //   },
+  // ];
+  // let datas = arrAllData.some(({ id }) => id == 4);
+  // console.log(`some判断是否存在，只要一个符合才是`, datas);
+
+  // 2（ 数组对象） 给数组对象增加属性 原数组不变 ------------------------ 新增
+  let arrtext = [
+    {
+      text: 123,
+    },
+  ];
+  var newArr = arrtext.map((v) => {
+    return { ...v, checked: true };
+  });
+  console.log(newArr);
+
+  //3（ 数组对象） 删除 删除数组对象的值 -------------------------------------- 删除多个
+  const deleteParams = ["name", "show", "age"];
+  const data = [
+    { name: "zs", show: true, age: "12", eat: "apple", look: "book" },
+    { name: "lisi", show: true, age: "10", eat: "apple", look: "book" },
+  ];
+  data.forEach((item) => {
+    deleteParams.forEach((it) => {
+      Reflect.deleteProperty(item, it);
+    });
+  });
+  console.log(data);
 </script>

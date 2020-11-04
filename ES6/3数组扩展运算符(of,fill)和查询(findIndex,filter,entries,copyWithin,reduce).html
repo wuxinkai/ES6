@@ -73,9 +73,6 @@
   }
   console.log(`转成字符串split:` + arr20); //转成字符串
 
-
-
-
   //find( )实例方法，查询某一个，先遍历数组 一旦返回true 停止查找 返回当前项，
   // value：表示当前查找的值。
   // index：表示当前查找的数组索引。
@@ -89,11 +86,8 @@
   });
   console.log(`find：`, find);
 
-
-
-
-// filter 是查询数组所有值  find只查找第一个值
-  //filter： 过滤方法， 查出比她大的所有的    
+  // filter 是查询数组所有值  find只查找第一个值
+  //filter： 过滤方法， 查出比她大的所有的
   let fildata = ["过滤方法", 1, "不要汉字", 2, "只要nember", 4, 5];
   let filter = fildata.filter((item, index) => {
     // return true   //返回 true是留下当前项，如果是false就不要当前项 ，返回一个新数组原数组不变，false返回的是空数组什么都没了
@@ -102,17 +96,12 @@
   });
   console.log(`filter：`, filter); //返回新数组 原数组不变
 
-
-
-
   //filterIndex  先遍历数组，一旦返回true停止查找 返回当前项的索引
   let filterIn = [2, 1, 3, 4, "findeIndex", 5];
   let finIndex = filterIn.findIndex((item) => {
     return item == "findeIndex";
   });
   console.log("当前的索引是第四个findeIndex:", finIndex);
-
-
 
   //fill(开始位置 ，开始替换位置，结束替换位置)实例方法 替换数组中的某一项 ， 按照指定字符替换数组， 在修改中会应用到
   let arr13 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -122,8 +111,6 @@
   // arr13.fill('fill替换', 2, 5) //将2,3，4替换，
   arr13.fill("fill替换", 2, 3); //做修改的时候，可以查到索引，后替换当前的
   console.log(`fill替换结果`, arr13);
-
-
 
   //rest运算符
   function text(first, ...arg) {
@@ -149,8 +136,6 @@
   console.log(ary.copyWithin(4, 0, 2)); //不包括索引2】
   // console.log(ary.copyWithin(4,0)) //没写最后一个参数，默认到结束位置
 
-
-
   //includes 判断数组中是否有这一项
   let includesData = [1, 2, 3, 4, "includes这项", 6, 6, 7, 8];
   console.log(
@@ -159,16 +144,12 @@
   );
   console.log(`指定查找位置`, includesData.includes("includes这项", 4)); //
 
-
-
   // every  遍历数组，如果每一项返回true，最后返回的为true  只要有一个返回false就是  false
   let everyData = [1, 2, 3, 4, 6, 6, 7, 8];
   let info = everyData.every((item) => {
     return typeof item === "number";
   });
   console.log("every 只有所有的是true才是true", info);
-
-
 
   // some  遍历数组，只要有一个true就是true
   let someData = ["1", "5", "8", "Y"];
@@ -177,8 +158,6 @@
   });
   console.log("some 只要有一个正确就是true", someInfo);
 
-
-
   // reduce  迭代，
   let reduceDta = [1, 2, 3, 4, 5, 6];
   let reduceInfo = reduceDta.reduce((prev, item) => {
@@ -186,8 +165,6 @@
     return prev + item;
   }, 10); //prev 第一次没有值，要想第一次有值在最后追加内容
   console.log(reduceInfo);
-
-
 
   // reduceRight  和 reduce一样 顺序从右往左执行
 
@@ -202,10 +179,53 @@
     console.log(`获取的是内容`, item);
   }
 
-
-
   // entries 可以遍历 索引和每一项 ，数组形式出现
   for (let item of keyDta.entries()) {
     console.log(`entries获取的是内容和索引`, item);
   }
+
+  //遍历数组对象
+  let arrAllData = [
+    {
+      id: 1,
+      value: "1",
+    },
+    {
+      id: 2,
+      value: "2",
+    },
+    {
+      id: 3,
+      value: "3",
+    },
+    {
+      id: 4,
+      value: "5",
+    },
+    {
+      id: 5,
+      value: "6",
+    },
+    {
+      id: 6,
+      value: "7",
+    },
+  ];
+  let datas = arrAllData.some(({ id }) => id == 4);
+  console.log(`some判断是否存在，只要一个符合才是`, datas);
+
+
+
+  let arrTabData = [
+    {
+      id: 1,
+      value: "1",
+    },
+    {
+      id: 2,
+      value: "1",
+    }];
+    let values = arrTabData.every(({ value }) => value == 1);
+    let ids = arrTabData.every(({ id }) => id == 1);
+    console.log('every全部正确才符合',values ,ids)
 </script>

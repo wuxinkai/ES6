@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //数据描述符
+  let obj = {
+    a: "判断对象",
+    b: "a",
+    c: 666,
+  };
+  // 后端返回数据包含B
+  // 前端不能显示b
+  Object.defineProperty(obj, "b", {
+    enumerable: false, //
+    writable:false//是否可改
+  });
+
+  console.log(`Object.keys数据`, Object.keys(obj));
+  console.log(`原数据`, obj);
+  console.log(`查看哪些数据被枚举`, Object.getOwnPropertyDescriptors(obj));
+  console.log(`查看单个`, Object.getOwnPropertyDescriptor(obj,'b'));
+</script>

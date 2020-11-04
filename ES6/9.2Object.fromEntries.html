@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //数组转对象 
+  const arr = [
+    ["foo", 1],
+    ["bar", 2],
+  ];
+  //将数组转成对象 Object.fromEntries
+  const obj = Object.fromEntries(arr);
+  console.log(obj);
+
+
+  const obj2 = {
+  abc: 1,
+  def: 2,
+  ghksks: 3
+}
+
+let res = Object.fromEntries( Object.entries(obj2).filter(([key, val]) => key.length === 3))
+console.log(res)
+
+console.log(Object.fromEntries( Object.entries(obj2)))
+
+
+const obj3 = {
+  abc: 1,
+  def: 2,
+  ghksks: 3
+}
+console.log(555, Object.entries(obj3))
+//过滤对象                             Object.entries(obj3)  将对象转成数组，遍历完成转回对象
+console.log(555,Object.fromEntries( Object.entries(obj3).filter(([key, val]) => key.length === 3)))
+</script>

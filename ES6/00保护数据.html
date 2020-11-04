@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //刚刚获取得数据解构不能变
+  //显示在列表上是另一套数据
+  // 可以还原我们排序得数据
+ let Alldata = {
+    code: 0,
+    list: [
+      {
+        name: "李磊",
+        addr: "北京朝阳",
+      },
+      {
+        name: "韩梅梅",
+        addr: "北京海淀",
+      },
+      {
+        name: "鹦鹉",
+        addr: "北京昌平",
+      },
+    ],
+    price: [1.6, 0.9, 3.1, 2.2, 6.5, 4.4, 6, 9],
+    read: 7,
+  };
+
+ let  {price} = Alldata
+
+ Object.freeze(price) //Object.freeze() 方法可以冻结一个对象。一个被冻结的对象再也不能被修改；
+ let proxy=new Proxy({},{
+   get (target,key){
+     if(key=='up'){
+       return [].concat(price).sort((a,b)=>a-b)
+     }else if(key==='down'){
+      return [].concat(price).sort((a,b)=>b-a)
+     }else{
+       return price
+     }
+   }
+ }) 
+
+//增加替身
+
+</script>

@@ -9,3 +9,22 @@
   
 </body>
 </html>
+<script>
+let grade = {
+  'lilei':96,
+  'hanmeimei':99
+}
+let result=[]
+for(let k in grade){
+  result.push(k)
+}
+console.log(result) 
+console.log(`属性名`,Object.keys(grade)) 
+console.log(`值`,Object.values(grade)) 
+console.log(`选出李磊`,Object.keys(grade).filter(item=>item=='lilei')) 
+
+
+for(let [k,v] of Object.entries(grade)){
+  console.log(`Object.entries后可遍历`,k,v)
+}
+</script>

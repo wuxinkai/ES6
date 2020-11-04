@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  // 操作异步集合
+  function Gen(time) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve(time);
+      }, time);
+    });
+  }
+  //错误结果
+  // async function test() {
+  //   let arr = [Gen(2000), Gen(100), Gen(3000)];
+  //   for (let item of arr) {
+  //     //没有等待 数组第一项执行完成再执行第二个，而是一起执行的
+  //     console.log(Date.now(), item.then(console.log));
+  //   }
+  // }
+  // test()
+
+  //正确  for await  都是同时运行 ，一起执行，等待从第一个开始显示
+  async function text2() {
+    let arr = [Gen(1000), Gen(3000), Gen(5000)];
+    for await (let item of arr) {
+      console.log(Date.now(),item);
+    }
+  }
+  text2();
+</script>

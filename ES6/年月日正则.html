@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  
+  //正则匹配  点是匹配任何字符的   换行符不能用点匹配  \n
+  console.log(/foo.bar/.test("foo\nbar"));
+   // 加个s
+  console.log(/foo.bar/s.test("foo\nbar"));
+
+  //年月日正则
+  const t = "2019-06-07".match(/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/);
+  console.log(t.groups.year);
+  console.log(t.groups.month);
+  console.log(t.groups.day);
+</script>
