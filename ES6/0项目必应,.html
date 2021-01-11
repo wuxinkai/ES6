@@ -142,6 +142,8 @@
   });
   console.log(newArr);
 
+  //合并数组
+
   //3（ 数组对象） 删除 删除数组对象的值 -------------------------------------- 删除多个
   const deleteParams = ["name", "show", "age"];
   const data = [
@@ -154,4 +156,51 @@
     });
   });
   console.log(data);
+
+  //数组对象 给对象替换属性
+  function setAttrExcel(excelBody) {
+    let excelBody = [
+      {
+        出厂日固定资产编号期: "资产1",
+        出厂日期: "日期1",
+        出厂编号: "出厂1",
+        到货日期: "到货1",
+        极好价格: "极好1",
+        调入日期: "调入1",
+      },
+    ];
+    let listLabel = [
+      { label: "固定资产编号", prop: "acreage" },
+      { label: "到货日期", prop: "assetsType" },
+      { label: "极好价格", prop: "incomePrice" },
+      { label: "调入日期", prop: "rewardStatus" },
+      { label: "出厂编号", prop: "addTime" },
+      { label: "出厂日期", prop: "addManagerName" },
+    ];
+    let curAry = [];
+    excelBody.map((excelItem, idx) => {
+      let curRow = {};
+      listLabel.map((tableItem, index) => {
+        Object.keys(excelItem).map((attrName, i) => {
+          if (tableItem.label == attrName) {
+            Object.assign(curRow, {
+              [tableItem.prop]: excelItem[attrName],
+            });
+          }
+        });
+      });
+      curAry.push(curRow);
+    });
+    return curAry;
+    //结果
+    // [
+    //   {
+    //     addManagerName: "日期1",
+    //     addTime: "出厂1",
+    //     assetsType: "到货1",
+    //     incomePrice: "极好1",
+    //     rewardStatus: "调入1",
+    //   },
+    // ];
+  }
 </script>
